@@ -18,19 +18,15 @@ To run the code in this repository you will need to have installed the following
   * numpy
   * matplotlib
 
-### Installation
+### Quick start
 
-To get started please begin with
+* To get started please begin with
 
     $ python setup.install install
 
-This will install a python module `micromagnetic_standard_problem_FMR` required
-to generate the figures.
+  This will install a python module `micromagnetic_standard_problem_FMR`
+  required to generate the figures.
 
-## Structure of this repository
+* Then to reproduce the results, enter the corresponding directory and type `make`. 
 
-For each software package, we have a directory containing the scripts required
-to run the standard_problem and a second folder containing the cached data
-(simulation results).
 
-## How to reproduce the results 
