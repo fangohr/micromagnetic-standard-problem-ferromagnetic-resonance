@@ -2,9 +2,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-
-OOMMF_cached_data = os.path.join("../OOMMF_standard_problem")
-Nmag_cached_data = os.path.join("../Nmag_standard_problem")
+import argparse
 
 
 def fft(mx, dt=5e-12):
@@ -159,10 +157,13 @@ def figure4_and_5(txyzFileLoc,
         return my_cmap
 
     # Different simulation tools produce slightly different peaks:
-    if software == 'OOMMF':
+    if software.lower() == 'OOMMF'.lower():
         peaks = [8.25e9, 11.25e9, 13.9e9]
-    elif software == 'Nmag':
+    elif software.lower() == 'Nmag'.lower():
         peaks = [8.1e9, 11.0e9, 13.5e9]
+    else:
+        raise ValueError(
+            "You must specify the software used to generate the data")
 
     data = np.loadtxt(txyzFileLoc)
     ts = data[:, 0]
@@ -277,3 +278,43 @@ def figure4_and_5(txyzFileLoc,
         fig.suptitle('%s GHz' % peakGHz, fontsize=20)
         fig.tight_layout()
         fig.savefig(figname)
+
+
+def transform_data():
+    for direction in ["x", "y", "z"]:
+        source = 'm{}s.npy'.format(direction)
+        targetA = 'm{}s_ft_abs.npy'.format(direction)
+        targetB = 'm{}s_ft_phase.npy'.format(direction)
+
+        if not os.path.isfile(source):
+            raise IOError(("Source file {} does not exist try running the "
+                          "Makefile").format(source))
+        if not os.path.isfile(targetA) or not os.path.isfile(targetB):
+            spatial_fft(source)
+
+
+parser = argparse.ArgumentParser(
+    description="Helper function for micromagnetic_standard_problem_FMR")
+
+parser.add_argument("--transform", help="Transform the data",
+                    action="store_true")
+parser.add_argument("--figures", help="Generate Figs~(2-5)",
+                    action="store_true")
+parser.add_argument("--software", help="Software used to create data",
+                    default="")
+
+args = parser.parse_args()
+software = args.software
+
+if args.transform:
+    transform_data()
+
+if args.figures:
+    figure2("./Dynamic_txyz.txt", software)
+
+    figure3("./Dynamic_txyz.txt", "mys_ft_abs.npy", software)
+
+    figure4_and_5("./Dynamic_txyz.txt",
+                  "mxs_ft_abs.npy", "mys_ft_abs.npy", "mzs_ft_abs.npy",
+                  "mxs_ft_phase.npy", "mys_ft_phase.npy", "mzs_ft_phase.npy",
+                  software)

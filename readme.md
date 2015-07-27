@@ -11,22 +11,24 @@ Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr
 
 To run the code in this repository you will need to have installed the following:
 
-* [OOMMF](http://math.nist.gov/oommf/) 
-* [Nmag](http://nmag.soton.ac.uk/nmag/) 
+* [OOMMF](http://math.nist.gov/oommf/)
+* [Nmag](http://nmag.soton.ac.uk/nmag/)
 * [Python](https://www.python.org)
 * Python modules:
   * numpy
   * matplotlib
 
-### Quick start
+### Instructions
 
-* To get started please begin with
+Each folder contains the scripts to create figures 2,3,4 and 5 from the report
+for a particular software. These figures correspond to the standard-problem and
+can be used for comparing between the softwares. Each folder contains a `Make`
+file which can be run in two ways:
 
-    $ python setup.install install
+1. To produce the data: enter the folder and execute `make data`.
 
-  This will install a python module `micromagnetic_standard_problem_FMR`
-  required to generate the figures.
+2. To produce the figures: enter the folder and execute `make`.2. If the first
+   step has not been run, these figures are produced using cached data. If you
+   overwrite the cached data and wish to retrieve it, this can be done with:
 
-* Then to reproduce the results, enter the corresponding directory and type `make`. 
-
-
+    $ git checkout Dynamic_txyz.txt mxs.npy mys.npy mzs.npy
