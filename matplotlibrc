@@ -1,5 +1,0 @@
-backend         : Agg
-figure.figsize  : 4.0, 3.0
-font.family     : serif
-font.weight     : normal
-legend.fontsize : 9
