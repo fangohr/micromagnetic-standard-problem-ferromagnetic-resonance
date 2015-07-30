@@ -38,6 +38,9 @@ To check you have the installed software:
     ```
 
     The `export` here is required for the `make` files to run properly.
+	
+	For more information on installing and running OOMMF, refer to:
+	http://math.nist.gov/oommf/software-12.html
 
 * For `Nmag` check your installation by running
 
@@ -73,8 +76,24 @@ run in two ways:
     $ git checkout Dynamic_txyz.txt mxs.npy mys.npy mzs.npy
     ```
 
+	
+### Nmag mesh discretiszation
+
+As discussed in section 3D of the paper, finite element and finite difference
+techniques produce slightly different results due to their different handling
+of demagnetization energy.
+
+The finite element approach can be brought into agreement with finite
+difference through an appropriate choice of mesh discretization. The standard
+simulation uses one based on a 5x5x5nm cell size, but in figure 13 we show the
+spectra resulting from a 2x2x1nm cell size. This mesh is also provided, and 
+can be utilized in simulations by changing the parameter `meshName` in 
+`relax.py` and `dynamic.py` to `mesh_221.nmesh.h5`
+
+
+
 ## Todo
-1. Check and prood-read the readme in particular the installation instructions
+1. Check and proof-read the readme in particular the installation instructions
    for OOMMF
 
 2. Understand why the output of the standard problem for `Nmag` varies between
