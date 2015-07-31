@@ -311,11 +311,11 @@ if args.transform:
     transform_data()
 
 if args.figures:
-    figure2("./Dynamic_txyz.txt", software)
+    figure2("./dynamic_txyz.txt", software)
 
-    figure3("./Dynamic_txyz.txt", "mys_ft_abs.npy", software)
+    figure3("./dynamic_txyz.txt", "mys_ft_abs.npy", software)
 
-    figure4_and_5("./Dynamic_txyz.txt",
+    figure4_and_5("./dynamic_txyz.txt",
                   "mxs_ft_abs.npy", "mys_ft_abs.npy", "mzs_ft_abs.npy",
                   "mxs_ft_phase.npy", "mys_ft_phase.npy", "mzs_ft_phase.npy",
                   software)

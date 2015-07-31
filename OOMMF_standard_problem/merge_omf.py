@@ -23,4 +23,6 @@ mxs = 0.5 * (mxs[:, :numMags] + mxs[:, numMags:])
 mys = 0.5 * (mys[:, :numMags] + mys[:, numMags:])
 mzs = 0.5 * (mzs[:, :numMags] + mzs[:, numMags:])
 
-np.savez('ms.npz', mxs=mxs, mys=mys, mzs=mzs)
+np.save('mxs.npy', mxs)
+np.save('mys.npy', mys)
+np.save('mzs.npy', mzs)
