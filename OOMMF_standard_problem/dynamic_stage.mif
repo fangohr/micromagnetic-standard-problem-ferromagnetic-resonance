@@ -1,28 +1,28 @@
 # MIF 2.1
 # Dynamic stage for 120x120x5 nm film resonance test.
 
+# Sample geometry
 Specify Oxs_BoxAtlas:atlas {
     xrange {0  120e-9}
     yrange {0  120e-9}
     zrange {0  10e-9}
 }
 
+# Mesh
 Specify Oxs_RectangularMesh:mesh {
     cellsize {5e-09 5e-09 5e-09}
     atlas :atlas
 }
 
-
-
-# Exchange
+# Exchange energy
 Specify Oxs_UniformExchange {
     A   13e-12
 }
 
-# Demag
+# Demagnetisation energy
 Specify Oxs_Demag {}
 
-#  applied field
+# External magnetic bias field
 Specify Oxs_FixedZeeman {
     field { Oxs_UniformVectorField {
     vector { 0.819152044289 0.573576436351 0.0    } 
@@ -30,13 +30,13 @@ Specify Oxs_FixedZeeman {
     multiplier 8e4
 }
 
+# LLG parameters
 Specify Oxs_RungeKuttaEvolve {
     alpha 0.008
     gamma_G 2.210173e5
 }
-
     
-# Driver
+# Driver parameters
 Specify Oxs_TimeDriver {
     evolver Oxs_RungeKuttaEvolve
     stopping_time 5e-12
@@ -50,10 +50,9 @@ Specify Oxs_TimeDriver {
     basename dynamic
     vector_field_output_format {text %#.8g}
 }
-
     
 Destination table mmArchive
 Destination mags mmArchive
 
 Schedule DataTable table Stage 1
-Schedule Oxs_TimeDriver::Spin mags Stage 1  
+Schedule Oxs_TimeDriver::Spin mags Stage 1
