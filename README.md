@@ -63,7 +63,7 @@ git clone git@github.com:fangohr/micromagnetic-standard-problem-ferromagnetic-re
 
 This repository contains scripts to reproduce the standard problem results as
 presented in the paper. There are two directories in `src/` directory: `nmag_scripts/`
-and `oommf_scripts`. Each directory contains the scripts to create figures 2, 3, 4 and 5 from the paper.
+and `oommf_scripts/`. Each directory contains the scripts to create figures 2, 3, 4 and 5 from the paper.
 For each folder we include a a `Makefile` which can be run in several ways:
 
 1. To produce figures using the data in the repository, execute `make figures`.
