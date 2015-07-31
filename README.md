@@ -92,7 +92,8 @@ can be utilized in simulations by changing the parameter `meshName` in
 
 ## Todo
 1. Check and proof-read the readme in particular the installation instructions
-   for OOMMF. Marijan: Small polishing. All good.
+   for OOMMF. Marijan: Small polishing. The installation of both oommf and
+   nmag are never easy, so I assume this is enough information.
 
 2. Understand why the output of the standard problem for `Nmag` varies between
    runs. This can be reproduced by entering `Nmag_standard_problem` and running
