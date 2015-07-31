@@ -1,7 +1,7 @@
 import nmag
 from nmag import SI, every, at
 
-mesh_name = 'mesh_24.nmesh.h5'
+mesh_name = 'meshes/mesh_24.nmesh.h5'
 relax_name = 'relax'
 
 # Material parameters
