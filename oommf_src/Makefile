@@ -12,7 +12,7 @@ ${transform_data}:
 
 figure_clean:
 	rm -f *pdf
-	rm -f m*_*npz
+	rm -f m*_*npy
 
 data: dynamic_stage.mif relax.omf
 	rm -f dynamic.odt
@@ -40,5 +40,5 @@ clean_all:
 	rm -f *.omf
 	rm -f *.odt
 	rm -f *.pdf
-	rm -f *.npz
+	rm -f *.npy
 	rm -f *.txt
