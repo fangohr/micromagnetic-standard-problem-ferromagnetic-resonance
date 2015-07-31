@@ -7,14 +7,10 @@ transform_data = mxs_ft_abs.npy mys_ft_abs.npy mzs_ft_abs.npy\
 all: data figures
 
 figures: ${transform_data}
-	python ../micromagnetic_standard_problem_FMR.py --figures --software OOMMF
+	python ../postprocessing.py --figures --software OOMMF
 
 ${transform_data}:
-	python ../micromagnetic_standard_problem_FMR.py --transform --software OOMMF
-
-figure_clean:
-	rm -f *pdf
-	rm -f m*_*npy
+	python ../postprocessing.py --transform --software OOMMF
 
 data: dynamic_stage.mif relax.omf
 	rm -f dynamic.odt
@@ -25,7 +21,7 @@ data: dynamic_stage.mif relax.omf
 	tclsh $(OOMMFTCL) odtcols < "dynamic.odt" 18 14 15 16 > "dynamic_txyz.txt"
 
 	#extract the spatial magnetisation data to 'mxs.npy', 'mys.npy' and 'mzs.npy'
-	python merge_omf.py
+	python oommf_postprocessing.py
 
 	#And tidy away all of the .omf files
 	rm dynamic-*.omf
@@ -34,9 +30,14 @@ relax.omf: relaxation_stage.mif
 	tclsh $(OOMMFTCL) boxsi +fg relaxation_stage.mif -exitondone 1
 	mv relax-*omf relax.omf
 
+figure_clean:
+	rm -f *.pdf
+
 data_clean:
 	rm -f *.omf
 	rm -f *.odt
+	rm -f *.npy
+	rm -f *.txt
 
 clean_all:
 	rm -f *.omf
