@@ -1,16 +1,14 @@
 import glob
 import numpy as np
 
-files = glob.glob('Dynamic*.omf')
-files.sort()
+omf_files = glob.glob('dynamic*.omf')
+omf_files.sort()
 
 mxs = []
 mys = []
 mzs = []
-
-
-for f in files:
-    d = np.loadtxt(f)
+for omf_file in omf_files:
+    d = np.loadtxt(omf_file)
     mxs.append(d[:, 0])
     mys.append(d[:, 1])
     mzs.append(d[:, 2])
@@ -25,6 +23,4 @@ mxs = 0.5 * (mxs[:, :numMags] + mxs[:, numMags:])
 mys = 0.5 * (mys[:, :numMags] + mys[:, numMags:])
 mzs = 0.5 * (mzs[:, :numMags] + mzs[:, numMags:])
 
-np.save('mxs.npy', mxs)
-np.save('mys.npy', mys)
-np.save('mzs.npy', mzs)
+np.savez('ms.npz', mxs=mxs, mys=mys, mzs=mzs)
