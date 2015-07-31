@@ -28,27 +28,3 @@ mzs = 0.5 * (mzs[:, :numMags] + mzs[:, numMags:])
 np.save('mxs.npy', mxs)
 np.save('mys.npy', mys)
 np.save('mzs.npy', mzs)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
