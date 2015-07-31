@@ -14,7 +14,7 @@ figure_clean:
 	rm -f *pdf
 	rm -f m*_*npy
 
-data: Dynamic_dat.h5
+data: dynamic_dat.h5
 	ncol dynamic time m_Py_0 m_Py_1 m_Py_2 > dynamic_txyz.txt
 	# Drop the first row for compatibility
 	tail -n +2 dynamic_txyz.txt > temp.txt
@@ -24,10 +24,10 @@ data: Dynamic_dat.h5
 	       	--space=0,120,24/0,120,24/5 	--out=dynamic_spatYMag.nmagProbe
 	python convertNmagProbe_2.py dynamic_spatYMag.nmagProbe
 
-dynamic Dynamic_dat.h5 Dynamic_dat.ndt: dynamic_stage.py Relax_dat.h5
+dynamic dynamic_dat.h5 dynamic_dat.ndt: dynamic_stage.py relax_dat.h5
 	nsim dynamic_stage.py --clean
 
-relax Relax_dat.h5: Relax.py
+relax relax_dat.h5: relaxation_stage.py
 	nsim relaxation_stage.py --clean
 
 data_clean:
