@@ -1,6 +1,6 @@
-# Proposal of a Micromagnetic Standard Problem for Ferromagnetic Resonance Simulations
+# Proposal of a micromagnetic standard problem for ferromagnetic resonance simulations
 
-Online repository for the paper.
+Online repository for the paper, avaliable at...
 
 ## Authors
 Alexander Baker, Shilei Zhang, Weiwei Wang, Gregory Ashton, Marijan Beg,
@@ -9,7 +9,7 @@ Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr
 
 ## Software
 
-To run the code in this repository you will need to have installed the following:
+To run the code in this repository, the following software must be installed:
 
 * [OOMMF](http://math.nist.gov/oommf/)
 * [Nmag](http://nmag.soton.ac.uk/nmag/)
@@ -29,7 +29,7 @@ To check you have the installed software:
     ```
 
   Note that `$OOMMFTCL` is an enviroment variable pointing to the installed
-  `oommf.tcl` file in the directory where you installed `OOMMF`. This can be
+  `oommf.tcl` file in the directory where `OOMMF` is installed. This can be
   set in `.bashrc` by
 
     ```bash
@@ -61,9 +61,9 @@ git clone git@github.com:fangohr/micromagnetic-standard-problem-ferromagnetic-re
 ### Reproducing results
 
 This repository contains several directories, each of which contains scripts to
-reproduce the standard problem for ferromagnetic resonance. In particular each
-folder contains the scripts to create figures 2,3,4 and 5 from the report for a
-particular software. For each folder we include a a `Make` file which can be
+reproduce the standard problem results for ferromagnetic resonance. In particular each
+folder contains the scripts to create figures 2, 3, 4 and 5 from the report for a
+particular software. For each folder we include a a `Makefile` which can be
 run in two ways:
 
 1. To produce the data: enter the folder and execute `make data`.
@@ -90,11 +90,9 @@ spectra resulting from a 2x2x1nm cell size. This mesh is also provided, and
 can be utilized in simulations by changing the parameter `meshName` in 
 `relax.py` and `dynamic.py` to `mesh_221.nmesh.h5`
 
-
-
 ## Todo
 1. Check and proof-read the readme in particular the installation instructions
-   for OOMMF
+   for OOMMF. Marijan: Small polishing. All good.
 
 2. Understand why the output of the standard problem for `Nmag` varies between
    runs. This can be reproduced by entering `Nmag_standard_problem` and running
@@ -110,4 +108,5 @@ can be utilized in simulations by changing the parameter `meshName` in
 
 3. Understand why the output `Dynamic_txyz.txt` from `Nmag` is different from
    `OOMMF`. This can be demonstrated with the cached data already in the repo
-   by running [Todo3.py](Todo3.py)
+   by running [Todo3.py](Todo3.py) Marijan: This is expected. Two different
+   packages and this is also discussed in the paper.
