@@ -52,7 +52,7 @@ Specify Oxs_TimeDriver {
 }
 
     
-Destination table   mmArchive
+Destination table mmArchive
 Destination mags mmArchive
 
 Schedule DataTable table Stage 1
