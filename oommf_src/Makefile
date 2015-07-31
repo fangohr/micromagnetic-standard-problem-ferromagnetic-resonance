@@ -4,6 +4,8 @@
 transform_data = mxs_ft_abs.npy mys_ft_abs.npy mzs_ft_abs.npy\
 	             mxs_ft_phase.npy mys_ft_phase.npy mzs_ft_phase.npy\
 
+all: data figures
+
 figures: ${transform_data}
 	python ../micromagnetic_standard_problem_FMR.py --figures --software OOMMF
 

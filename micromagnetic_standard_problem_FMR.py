@@ -39,6 +39,9 @@ def spatial_fft(dataname):
 def figure2(txyzFileLoc, software):
     data = np.loadtxt(txyzFileLoc)
 
+    print data
+    print data.shape
+
     ts = data[:, 0]
     my = data[:, 2]
 
