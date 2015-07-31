@@ -14,10 +14,10 @@ figure_clean:
 	rm -f *pdf
 	rm -f m*_*npy
 
-data: dynamic.mif relax.omf
+data: dynamic_stage.mif relax.omf
 	rm -f Dynamic.odt
 
-	tclsh $(OOMMFTCL) boxsi +fg dynamic.mif -exitondone 1
+	tclsh $(OOMMFTCL) boxsi +fg dynamic_stage.mif -exitondone 1
 
 	#extract the txyz file
 	tclsh $(OOMMFTCL) odtcols < "Dynamic.odt" 18 14 15 16 > "Dynamic_txyz.txt"
@@ -28,8 +28,8 @@ data: dynamic.mif relax.omf
 	#And tidy away all of the .omf files
 	rm Dynamic-*.omf
 
-relax.omf: relax.mif
-	tclsh $(OOMMFTCL) boxsi +fg relax.mif -exitondone 1
+relax.omf: relaxation_stage.mif
+	tclsh $(OOMMFTCL) boxsi +fg relaxation_stage.mif -exitondone 1
 	mv relax-*omf relax.omf
 
 data_clean:
