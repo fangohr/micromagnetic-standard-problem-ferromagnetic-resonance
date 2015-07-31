@@ -15,24 +15,24 @@ figure_clean:
 	rm -f m*_*npy
 
 data: Dynamic_dat.h5
-	ncol Dynamic time m_Py_0 m_Py_1 m_Py_2 > Dynamic_txyz.txt
+	ncol dynamic time m_Py_0 m_Py_1 m_Py_2 > dynamic_txyz.txt
 	# Drop the first row for compatibility
-	tail -n +2 Dynamic_txyz.txt > temp.txt
-	mv temp.txt Dynamic_txyz.txt
+	tail -n +2 dynamic_txyz.txt > temp.txt
+	mv temp.txt dynamic_txyz.txt
 
-	nmagprobe  Dynamic_dat.h5 --field=m_Py 	--time=0,20e-9,4000\
-	       	--space=0,120,24/0,120,24/5 	--out=Dynamic_spatYMag.nmagProbe
-	python convertNmagProbe_2.py Dynamic_spatYMag.nmagProbe
+	nmagprobe  dynamic_dat.h5 --field=m_Py 	--time=0,20e-9,4000\
+	       	--space=0,120,24/0,120,24/5 	--out=dynamic_spatYMag.nmagProbe
+	python convertNmagProbe_2.py dynamic_spatYMag.nmagProbe
 
-dynamic Dynamic_dat.h5 Dynamic_dat.ndt: Dynamic.py Relax_dat.h5
-	nsim Dynamic.py --clean
+dynamic Dynamic_dat.h5 Dynamic_dat.ndt: dynamic_stage.py Relax_dat.h5
+	nsim dynamic_stage.py --clean
 
 relax Relax_dat.h5: Relax.py
-	nsim Relax.py --clean
+	nsim relaxation_stage.py --clean
 
 data_clean:
 	rm -f *.h5
 	rm -f *log
-	rm -f Dynamic_spatYMag.nmagProbe
+	rm -f dynamic_spatYMag.nmagProbe
 
 
