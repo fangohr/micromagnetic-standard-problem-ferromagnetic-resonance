@@ -12,21 +12,21 @@ ${transform_data}:
 
 figure_clean:
 	rm -f *pdf
-	rm -f m*_*npy
+	rm -f m*_*npz
 
 data: dynamic_stage.mif relax.omf
-	rm -f Dynamic.odt
+	rm -f dynamic.odt
 
 	tclsh $(OOMMFTCL) boxsi +fg dynamic_stage.mif -exitondone 1
 
 	#extract the txyz file
-	tclsh $(OOMMFTCL) odtcols < "Dynamic.odt" 18 14 15 16 > "Dynamic_txyz.txt"
+	tclsh $(OOMMFTCL) odtcols < "dynamic.odt" 18 14 15 16 > "dynamic_txyz.txt"
 
 	#extract the spatial magnetisation data to 'mxs.npy', 'mys.npy' and 'mzs.npy'
 	python merge_omf.py
 
 	#And tidy away all of the .omf files
-	rm Dynamic-*.omf
+	rm dynamic-*.omf
 
 relax.omf: relaxation_stage.mif
 	tclsh $(OOMMFTCL) boxsi +fg relaxation_stage.mif -exitondone 1
@@ -40,5 +40,5 @@ clean_all:
 	rm -f *.omf
 	rm -f *.odt
 	rm -f *.pdf
-	rm -f *.npy
+	rm -f *.npz
 	rm -f *.txt
