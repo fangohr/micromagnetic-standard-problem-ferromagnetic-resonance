@@ -1,8 +1,9 @@
 import numpy as np
+import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-OOMMF_data = np.loadtxt("OOMMF_standard_problem/Dynamic_txyz.txt")
-Nmag_data = np.loadtxt("Nmag_standard_problem/Dynamic_txyz.txt")
+OOMMF_data = np.loadtxt("src/oommf_scripts/dynamic_txyz.txt")
+Nmag_data = np.loadtxt("src/nmag_scripts/dynamic_txyz.txt")
 time = OOMMF_data[:, 0]
 
 fig, axes = plt.subplots(nrows=3, sharex=True)
@@ -14,4 +15,4 @@ for i, (ax, ylabel) in enumerate(zip(axes, ylabels)):
     ax.set_ylabel(ylabel)
 
 ax.set_xlabel("time")
-plt.show()
+plt.savefig('comparison.pdf')

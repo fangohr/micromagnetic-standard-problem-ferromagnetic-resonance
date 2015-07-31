@@ -14,7 +14,7 @@ alpha = 1  # Gilbert damping
 H = 80e3  # A/m
 x_direction = 0.813405448449
 y_direction = 0.581697151818
-z_direction = 0
+z_direction = 0.0
 
 # Total simulation time
 T = 5e-9
