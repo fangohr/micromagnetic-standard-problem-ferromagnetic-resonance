@@ -14,7 +14,6 @@ figure_clean:
 	rm -f *pdf
 	rm -f m*_*npy
 
-
 data: dynamic.mif relax.omf
 	rm -f Dynamic.odt
 
@@ -36,3 +35,10 @@ relax.omf: relax.mif
 data_clean:
 	rm -f *.omf
 	rm -f *.odt
+
+clean_all:
+	rm -f *.omf
+	rm -f *.odt
+	rm -f *.pdf
+	rm -f *.npy
+	rm -f *.txt
