@@ -1,5 +1,5 @@
 # MIF 2.1
-# Minimisation of initial state for 200x200x5 nm film.
+# Energy minimisation of initial state for 200x200x5 nm film.
 
 Specify Oxs_BoxAtlas:atlas {
     xrange {0  120e-9}
