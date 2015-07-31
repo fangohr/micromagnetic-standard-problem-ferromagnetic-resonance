@@ -1,5 +1,5 @@
 # MIF 2.1
-# Dynamic stage for 200x200x5 nm film resonance test.
+# Dynamic stage for 120x120x5 nm film resonance test.
 
 Specify Oxs_BoxAtlas:atlas {
     xrange {0  120e-9}
@@ -47,7 +47,7 @@ Specify Oxs_TimeDriver {
         file relax.omf
         atlas :atlas
     } }
-    basename Dynamic
+    basename dynamic
     vector_field_output_format {text %#.8g}
 }
 
