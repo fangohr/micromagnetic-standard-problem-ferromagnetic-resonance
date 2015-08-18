@@ -109,3 +109,5 @@ The finite element approach can be brought into agreement with finite difference
    no differences.
 
 3. Understand why the output `Dynamic_txyz.txt` from `Nmag` is different from `OOMMF`. This can be demonstrated with the cached data already in the repository by running [Todo3.py](Todo3.py)
+
+   Marijan: This problem is now solved and it was caused by the Nmag tolerances. These tolerances are now reduced and agreement is good. We need to discuss whether changing tolerances is ok for standard problem. Also, we should remember to remove Todo.py and comparison.pdf files from the repository later.
