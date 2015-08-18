@@ -27,9 +27,19 @@ Py = nmag.MagMaterial(name="Py",
                       llg_gamma_G=SI(gamma, 'm/A s'),
                       llg_damping=alpha)
 
+# Set Demag tolerances.
+ksp_tols = {"DBC.rtol":1e-7,
+            "DBC.atol":1e-7,
+            "DBC.maxits":1000000,
+            "NBC.rtol":1e-7,
+            "NBC.atol":1e-7,
+            "NBC.maxits":1000000,
+            "PC.rtol":1e-3,
+            "PC.atol":1e-6,
+            "PC.maxits":1000000}
 
 # Create the simulation object
-sim = nmag.Simulation()
+sim = nmag.Simulation(ksp_tolerances=ksp_tols)
 
 # Load the mesh
 sim.load_mesh(mesh_name, [("Permalloy", Py)], unit_length=SI(1e-9, "m"))
@@ -41,7 +51,7 @@ sim.load_m_from_h5file(relax_name + ".h5")
 sim.set_H_ext([x_direction, y_direction, z_direction], SI(H, 'A/m'))
 
 # Set convergence parameters
-sim.set_params(stopping_dm_dt=0.0)
+sim.set_params(stopping_dm_dt=0.0, ts_abs_tol=1e-7, ts_rel_tol=1e-7)
 
 # Save the information ever 5ps, and exit after 20ns.
 sim.relax(save=[('fields', every('time', SI(dt, "s")))],
