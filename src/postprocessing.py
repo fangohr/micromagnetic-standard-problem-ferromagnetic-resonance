@@ -98,7 +98,6 @@ def figure3(txyzFileLoc, mys_ft_absLoc, software):
     ax.set_ylim([1e-5, 1e0])
     ax.set_yscale('log')
     ax.legend()
-    ax.grid()
 
     fig.savefig('figure3_{}.pdf'.format(software))
 
