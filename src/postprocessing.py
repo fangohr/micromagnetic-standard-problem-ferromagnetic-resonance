@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 """ Collection of all the common tools used in the project """
 import os
 import numpy as np
@@ -296,28 +298,29 @@ def transform_data():
             spatial_fft(source)
 
 
-parser = argparse.ArgumentParser(
-    description="Helper function for micromagnetic_standard_problem_FMR")
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Helper function for micromagnetic_standard_problem_FMR")
 
-parser.add_argument("--transform", help="Transform the data",
-                    action="store_true")
-parser.add_argument("--figures", help="Generate Figs~(2-5)",
-                    action="store_true")
-parser.add_argument("--software", help="Software used to create data",
-                    default="")
+    parser.add_argument("--transform", help="Transform the data",
+                        action="store_true")
+    parser.add_argument("--figures", help="Generate Figs~(2-5)",
+                        action="store_true")
+    parser.add_argument("--software", help="Software used to create data",
+                        default="")
 
-args = parser.parse_args()
-software = args.software
+    args = parser.parse_args()
+    software = args.software
 
-if args.transform:
-    transform_data()
+    if args.transform:
+        transform_data()
 
-if args.figures:
-    figure2("./dynamic_txyz.txt", software)
+    if args.figures:
+        figure2("./dynamic_txyz.txt", software)
 
-    figure3("./dynamic_txyz.txt", "mys_ft_abs.npy", software)
+        figure3("./dynamic_txyz.txt", "mys_ft_abs.npy", software)
 
-    figure4_and_5("./dynamic_txyz.txt",
-                  "mxs_ft_abs.npy", "mys_ft_abs.npy", "mzs_ft_abs.npy",
-                  "mxs_ft_phase.npy", "mys_ft_phase.npy", "mzs_ft_phase.npy",
-                  software)
+        figure4_and_5("./dynamic_txyz.txt",
+                      "mxs_ft_abs.npy", "mys_ft_abs.npy", "mzs_ft_abs.npy",
+                      "mxs_ft_phase.npy", "mys_ft_phase.npy", "mzs_ft_phase.npy",
+                      software)
