@@ -74,9 +74,9 @@ presented in the paper. There are two directories in `src/` directory: `nmag_scr
 
 If the data provided by this repository has been overwritten, the data can be retrieved by:
 
-    ```bash
-    $ git checkout Dynamic_txyz.txt mxs.npy mys.npy mzs.npy
-    ```
+```bash
+$ git checkout Dynamic_txyz.txt mxs.npy mys.npy mzs.npy
+```
 
 ### Nmag mesh discretization
 
