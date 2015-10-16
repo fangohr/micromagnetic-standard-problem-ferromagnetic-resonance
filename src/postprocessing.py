@@ -20,7 +20,7 @@ def fft(mx, dt=5e-12):
 
 
 def spatial_fft(dataname):
-    """ Spatially averaged FFT as defined in Eqn. (4) """
+    """ Spatially averaged FFT as defined in Eqn. (5) """
     ft_abs = []
     ft_phase = []
 
@@ -90,14 +90,16 @@ def figure3(txyzFileLoc, mys_ft_absLoc, software):
 
     fig = plt.figure(figsize=(7, 5.5))
     ax = fig.add_subplot(1, 1, 1)
-    ax.plot(freq[0:length]*1e-9, ft_power[0:length], label='Spatially Resolved')
-    ax.plot(freq[0:length]*1e-9, averaged[0:length], label='Spatially Averaged')
+    ax.plot(freq[0:length]*1e-9, ft_power[0:length],
+            label='Spatially Averaged')
+    ax.plot(freq[0:length]*1e-9, averaged[0:length], color="g", lw=2,
+            label='Spatially Resolved')
     ax.set_xlabel('Frequency (GHz)')
     ax.set_ylabel('Spectral density')
     ax.set_xlim([0.2, 20])
     ax.set_ylim([1e-5, 1e0])
     ax.set_yscale('log')
-    ax.legend()
+    ax.legend(frameon=False)
 
     fig.savefig('figure3_{}.pdf'.format(software))
 
@@ -283,7 +285,7 @@ def figure4_and_5(txyzFileLoc,
         fig.savefig(figname)
 
 
-def transform_data(path):
+def transform_data():
     """ Helper function to spatially transform data for each direction"""
     for direction in ["x", "y", "z"]:
         source = 'm{}s.npy'.format(direction)
