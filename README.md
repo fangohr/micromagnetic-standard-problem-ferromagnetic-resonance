@@ -65,8 +65,7 @@ To check you have the required software:
   set in `.bashrc` by
 
     ```bash
-    OOMMFTCL=/path/to/install/oommf/oommf.tcl
-    export OOMMFTCL
+    export OOMMFTCL=/path/to/install/oommf/oommf.tcl
     ```
 	
   For more information on installing and running OOMMF, refer to:
@@ -104,9 +103,9 @@ presented in the paper. There are two directories in `src/` directory: `nmag_scr
 
 If the data provided by this repository has been overwritten, the data can be retrieved by:
 
-    ```bash
-    $ git checkout Dynamic_txyz.txt mxs.npy mys.npy mzs.npy
-    ```
+```bash
+$ git checkout Dynamic_txyz.txt mxs.npy mys.npy mzs.npy
+```
 
 ### Nmag mesh discretization
 
