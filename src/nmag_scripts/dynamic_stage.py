@@ -28,15 +28,15 @@ Py = nmag.MagMaterial(name="Py",
                       llg_damping=alpha)
 
 # Set Demag tolerances.
-ksp_tols = {"DBC.rtol":1e-7,
-            "DBC.atol":1e-7,
-            "DBC.maxits":1000000,
-            "NBC.rtol":1e-7,
-            "NBC.atol":1e-7,
-            "NBC.maxits":1000000,
-            "PC.rtol":1e-3,
-            "PC.atol":1e-6,
-            "PC.maxits":1000000}
+ksp_tols = {"DBC.rtol": 1e-7,
+            "DBC.atol": 1e-7,
+            "DBC.maxits": 1000000,
+            "NBC.rtol": 1e-7,
+            "NBC.atol": 1e-7,
+            "NBC.maxits": 1000000,
+            "PC.rtol": 1e-3,
+            "PC.atol": 1e-6,
+            "PC.maxits": 1000000}
 
 # Create the simulation object
 sim = nmag.Simulation(ksp_tolerances=ksp_tols)
