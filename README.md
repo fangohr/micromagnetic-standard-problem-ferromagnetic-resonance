@@ -87,7 +87,7 @@ To check you have the required software:
 To get a local copy of this repository, clone it by running
 
 ```bash
-git clone git@github.com:fangohr/micromagnetic-standard-problem-ferromagnetic-resonance.git
+git clone https://github.com/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance.git
 ```
 
 ### Reproducing results
