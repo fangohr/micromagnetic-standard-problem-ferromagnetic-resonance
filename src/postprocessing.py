@@ -2,10 +2,13 @@
 
 """ Collection of all the common tools used in the project """
 import os
-import numpy as np
-import matplotlib; matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 import argparse
+
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+
+import matplotlib.pyplot as plt
 
 
 def fft(mx, dt=5e-12):
@@ -34,36 +37,36 @@ def spatial_fft(dataname):
         ft_abs.append(ft_a)
         ft_phase.append(ft_p)
 
-    np.save(dataname[:-4]+'_ft_abs.npy', np.array(ft_abs))
-    np.save(dataname[:-4]+'_ft_phase.npy', np.array(ft_phase))
+    np.save(dataname[:-4] + '_ft_abs.npy', np.array(ft_abs))
+    np.save(dataname[:-4] + '_ft_phase.npy', np.array(ft_phase))
 
 
 def figure2(txyzFileLoc, software):
     data = np.loadtxt(txyzFileLoc)
 
-    print data
-    print data.shape
+    print(data)
+    print(data.shape)
 
     ts = data[:, 0]
     my = data[:, 2]
 
-    dt = ts[1]-ts[0]
+    dt = ts[1] - ts[0]
 
     freq, ft_abs, phase = fft(my, dt)
 
     # We plot the log of the power spectrum, for clarity
-    ft_power = ft_abs**2
-    length = len(freq)/2
+    ft_power = ft_abs ** 2
+    length = len(freq) / 2
 
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(2, 1, 1)
-    ax.plot(ts*1e9, my, label='Real')
+    ax.plot(ts * 1e9, my, label='Real')
     ax.set_xlabel('Time (ns)')
     ax.set_ylabel('Magnetisation in Y')
     ax.set_xlim([0, 2.5])
 
     ax = fig.add_subplot(2, 1, 2)
-    ax.plot(freq[0:length]*1e-9, ft_power[0:length], '-', label='Real')
+    ax.plot(freq[0:length] * 1e-9, ft_power[0:length], '-', label='Real')
     ax.set_xlabel('Frequency (GHz)')
     ax.set_ylabel('Spectral density')
     ax.set_xlim([0.1, 20])
@@ -80,21 +83,21 @@ def figure3(txyzFileLoc, mys_ft_absLoc, software):
     ts = data[:, 0]
     my = data[:, 2]
 
-    dt = ts[1]-ts[0]
+    dt = ts[1] - ts[0]
 
-    freq, ft_abs, phase = fft(my,  dt)
-    ft_power = ft_abs**2
+    freq, ft_abs, phase = fft(my, dt)
+    ft_power = ft_abs ** 2
 
-    length = len(freq)/2
+    length = len(freq) / 2
 
     mys = np.load(mys_ft_absLoc)
-    averaged = np.average(mys**2, axis=0)
+    averaged = np.average(mys ** 2, axis=0)
 
     fig = plt.figure(figsize=(7, 5.5))
     ax = fig.add_subplot(1, 1, 1)
-    ax.plot(freq[0:length]*1e-9, ft_power[0:length],
+    ax.plot(freq[0:length] * 1e-9, ft_power[0:length],
             label='Spatially Averaged')
-    ax.plot(freq[0:length]*1e-9, averaged[0:length], color="g", lw=2,
+    ax.plot(freq[0:length] * 1e-9, averaged[0:length], color="g", lw=2,
             label='Spatially Resolved')
     ax.set_xlabel('Frequency (GHz)')
     ax.set_ylabel('Spectral density')
@@ -119,15 +122,14 @@ def figure4_and_5(txyzFileLoc,
     def find_freq_index(f, n, dt):
         freqs = np.fft.fftfreq(n, dt)
 
-        df = freqs[1]-freqs[0]
+        df = freqs[1] - freqs[0]
         for i in range(n):
-            if abs(f-freqs[i]) < 1e-5*df:
+            if abs(f - freqs[i]) < 1e-5 * df:
                 return i
 
         raise Exception("Failed to find the index of given frequency!")
 
     def rescale_cmap(cmap_name, low=0.0, high=1.0, plot=False):
-        import matplotlib._cm as _cm
         '''
         Example 1:
         # equivalent scaling to cplot_like(blah, l_bias=0.33, int_exponent=0.0)
@@ -144,21 +146,21 @@ def figure4_and_5(txyzFileLoc,
         g = np.array(cmap['green'])
         b = np.array(cmap['blue'])
         range = high - low
-        r[:, 1:] = r[:, 1:]*range+low
-        g[:, 1:] = g[:, 1:]*range+low
-        b[:, 1:] = b[:, 1:]*range+low
-        _my_data = {'red':   tuple(map(tuple, r)),
+        r[:, 1:] = r[:, 1:] * range + low
+        g[:, 1:] = g[:, 1:] * range + low
+        b[:, 1:] = b[:, 1:] * range + low
+        _my_data = {'red': tuple(map(tuple, r)),
                     'green': tuple(map(tuple, g)),
-                    'blue':  tuple(map(tuple, b))
+                    'blue': tuple(map(tuple, b))
                     }
         my_cmap = colors.LinearSegmentedColormap('my_hsv', _my_data, LUTSIZE)
 
         if plot:
-            print 'plotting'
+            print('plotting')
             plt.figure()
             plt.plot(r[:, 0], r[:, 1], 'r', g[:, 0], g[:, 1], 'g', b[:, 0],
                      b[:, 1], 'b', lw=3)
-            plt.axis(ymin=-0.2,  ymax=1.2)
+            plt.axis(ymin=-0.2, ymax=1.2)
             plt.show()
 
         return my_cmap
@@ -175,7 +177,7 @@ def figure4_and_5(txyzFileLoc,
     data = np.loadtxt(txyzFileLoc)
     ts = data[:, 0]
     n = len(ts)
-    dt = ts[1]-ts[0]
+    dt = ts[1] - ts[0]
 
     nx = 24
     ny = 24
@@ -245,22 +247,24 @@ def figure4_and_5(txyzFileLoc,
         norm = mpl.colors.Normalize(vmin=minVal, vmax=maxVal)
         cb1 = mpl.colorbar.ColorbarBase(ax, plt.cm.coolwarm, norm=norm,
                                         orientation='vertical',
-                                        ticks=[0, maxVal*0.25, maxVal*0.5,
-                                               maxVal*0.75, maxVal])
+                                        ticks=[0, maxVal * 0.25, maxVal * 0.5,
+                                               maxVal * 0.75, maxVal])
         cb1.set_label('Amplitude')
 
         my_hsv = rescale_cmap(cm.hsv, low=0.3, high=0.8, plot=False)
 
         plt.subplot(gs[4])
         ax = plt.gca()
-        plt.imshow(phase_x, cmap=my_hsv, vmin=-np.pi, vmax=np.pi, origin='lower')
+        plt.imshow(phase_x, cmap=my_hsv, vmin=-np.pi, vmax=np.pi,
+                   origin='lower')
         plt.title('x')
         plt.xticks([])
         plt.yticks([])
 
         plt.subplot(gs[5])
         ax = plt.gca()
-        plt.imshow(phase_y, cmap=my_hsv, vmin=-np.pi, vmax=np.pi, origin='lower')
+        plt.imshow(phase_y, cmap=my_hsv, vmin=-np.pi, vmax=np.pi,
+                   origin='lower')
         plt.title('y')
         plt.xticks([])
         plt.yticks([])
@@ -325,5 +329,6 @@ if __name__ == '__main__':
 
         figure4_and_5("./dynamic_txyz.txt",
                       "mxs_ft_abs.npy", "mys_ft_abs.npy", "mzs_ft_abs.npy",
-                      "mxs_ft_phase.npy", "mys_ft_phase.npy", "mzs_ft_phase.npy",
+                      "mxs_ft_phase.npy", "mys_ft_phase.npy",
+                      "mzs_ft_phase.npy",
                       software)
