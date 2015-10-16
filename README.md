@@ -84,30 +84,3 @@ As discussed in the section 3D of the paper, finite element and finite differenc
 of demagnetization energy.
 
 The finite element approach can be brought into agreement with finite difference through an appropriate choice of mesh discretization. The standard simulation uses one based on a 5x5x5nm cell size, but in figure 13 we show the spectra resulting from a 2x2x1nm cell size. This mesh is also provided, and can be utilized in simulations by changing the variable `mesh_name` in both `relaxation_stage.py` and `dynamic_stage.py` to `mesh_name = meshes/mesh_221.nmesh.h5`
-
-## Todo
-1. Check and proof-read the README in particular the installation instructions
-   for OOMMF.
-
-   Marijan: I polished this file and am happy with how it looks.
-   The installation of oommf and nmag are never easy, so maybe it is the best
-   to refer users to webpages.
-
-2. Understand why the output of the standard problem for `Nmag` varies between
-   runs. This can be reproduced by entering `Nmag_standard_problem` and running
-
-    ```bash
-    $ make data
-    $ mv Dynamic_txyz.txt Dynamic_txyz.txt.old
-    $ make data
-    ```
-
-   and then comparing `Dynamic_txyz.txt` with `Dynamic_txyz.txt.old`
-   
-   Marijan: This problem was probably caused by the wrong data committed to the
-   repository. I have tested multiple runs on two different machines, and there are
-   no differences.
-
-3. Understand why the output `Dynamic_txyz.txt` from `Nmag` is different from `OOMMF`. This can be demonstrated with the cached data already in the repository by running [Todo3.py](Todo3.py)
-
-   Marijan: This problem is now solved and it was caused by the Nmag tolerances. These tolerances are now reduced and agreement is good. We need to discuss whether changing tolerances is ok for standard problem. Also, we should remember to remove Todo.py and comparison.pdf files from the repository later.
