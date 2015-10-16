@@ -20,13 +20,13 @@ def fft(mx, dt=5e-12):
 
 
 def spatial_fft(dataname):
+    """ Spatially averaged FFT as defined in Eqn. (4) """
     ft_abs = []
     ft_phase = []
 
     mys = np.load(dataname)
     m, n = mys.shape
 
-    # this corresponds to equation 4 in the paper
     for i in range(n):
         f, ft_a, ft_p = fft(mys[:, i])
         ft_abs.append(ft_a)
@@ -283,7 +283,8 @@ def figure4_and_5(txyzFileLoc,
         fig.savefig(figname)
 
 
-def transform_data():
+def transform_data(path):
+    """ Helper function to spatially transform data for each direction"""
     for direction in ["x", "y", "z"]:
         source = 'm{}s.npy'.format(direction)
         targetA = 'm{}s_ft_abs.npy'.format(direction)
