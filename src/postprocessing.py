@@ -20,7 +20,7 @@ def fft(mx, dt=5e-12):
 
 
 def spatial_fft(dataname):
-    """ Spatially averaged FFT as defined in Eqn. (4) """
+    """ Spatially averaged FFT as defined in Eqn. (5) """
     ft_abs = []
     ft_phase = []
 
