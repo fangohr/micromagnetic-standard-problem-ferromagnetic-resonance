@@ -1,7 +1,7 @@
 import nmag
 from nmag import SI, at
 
-mesh_name = 'meshes/mesh_24.nmesh.h5'
+mesh_name = 'meshes/mesh_555.nmesh.h5'
 sim_output_name = 'relax'
 
 # Material parameters
