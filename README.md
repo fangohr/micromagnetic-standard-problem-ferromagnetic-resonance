@@ -18,11 +18,11 @@ _[TODO: Maybe add one-sentence summary of the paper to understand the context of
 
 Depending on your expertise and interest, you can use this repository in various ways.
 
-- Browse or download the data files underlying the figures in the paper.
+- Browse or download the data files underlying the figures 2 to 5 in the paper.
 
-- Re-produce the main figures in the paper. (No micromagnetic software needed.)
+- Re-produce the main figures 2 to 5 in the paper. (No micromagnetic software needed.)
 
-- Run our micromagnetic simulation scripts to re-generate the data files.
+- Run our micromagnetic simulation scripts to re-generate the data files (OOMMF required).
 
 
 The [data/](./data/) subfolder contains the data files from which Figures 2 and 3 in the paper are generated. You can look at the ["Guide to reproducing figures"](Guide_to_reproducing_figures.ipynb) to see how these figures are produced. Since the guide is written as a Jupyter notebook (see the [Jupyter documentation](https://jupyter.readthedocs.org/) for more information), you can also execute it yourself to reproduce the figures from the data. _TODO: Add a comment to say that this notebook duplicates the contents of some of the scripts in the `src/` folder._ These data files may also be useful to compare our results with output produced by your own software, so you may want to download them. None of these steps requires any micromagnetic software to be installed.
@@ -67,7 +67,7 @@ To check you have the required software:
     ```bash
     export OOMMFTCL=/path/to/install/oommf/oommf.tcl
     ```
-	
+
   For more information on installing and running OOMMF, refer to:
   http://math.nist.gov/oommf/software-12.html
 
@@ -76,10 +76,10 @@ To check you have the required software:
     ```bash
     nsim --version
     ```
-    
+
   For more information on installing and running Nmag, refer to:
   http://nmag.soton.ac.uk
-  
+
 ## Instructions
 
 ### Cloning
