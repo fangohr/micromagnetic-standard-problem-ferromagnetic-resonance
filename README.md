@@ -6,8 +6,8 @@ It provides the data files and scripts which allow the reader to reproduce these
 Start by reading ["Quick start"](#quick-start) below to get an overview of the contents of this repository and how you can use it.
 
 ## Authors
-Alexander Baker, Shilei Zhang, Weiwei Wang, Gregory Ashton, Marijan Beg,
-Maximilian Albert, Dmitri Chernyshenko, Marc-Antonio Bisotti, Matteo Franchin,
+Alexander Baker, Marijan Beg, Gregory Ashton, Weiwei Wang,
+Maximilian Albert, Dmitri Chernyshenko, Shilei Zhang, Marc-Antonio Bisotti, Matteo Franchin,
 Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
 
 *fangohr@soton.ac.uk
