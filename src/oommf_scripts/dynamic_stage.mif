@@ -37,6 +37,8 @@ Specify Oxs_RungeKuttaEvolve {
 }
     
 # Driver parameters
+# We run 4000 time steps, each of which lasts 5 picoseconds,
+# so that the entire dynamic stage lasts for 20 nanoseconds.
 Specify Oxs_TimeDriver {
     evolver Oxs_RungeKuttaEvolve
     stopping_time 5e-12
