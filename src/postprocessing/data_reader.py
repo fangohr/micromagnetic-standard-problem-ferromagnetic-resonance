@@ -38,7 +38,7 @@ class BaseDataReader(object):
         """
         # Timestamps are contained in the first column of the averaged data
         timesteps = self.data_avg[:, 0]
-        return util.convert_to_unit(timesteps, unit)
+        return timesteps * util.get_conversion_factor('s', unit)
 
     def get_dt(self, unit='s'):
         """
