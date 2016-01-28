@@ -3,6 +3,7 @@ from nose.tools import assert_equals, assert_true, assert_raises
 from pathlib import Path
 
 from postprocessing import DataReader
+from .mock_utils import FakeDataReader
 
 HERE = Path(__file__).parent.resolve()
 REF_DATA_DIR = HERE.joinpath('../../micromagnetic_simulation_data/reference_data/')
@@ -91,3 +92,12 @@ class TestDataReaderNmag(DataReaderTestBase):
         Create an instance of `NmagDataReader` which can be re-used for each individual test.
         """
         cls.data_reader = DataReader(REF_DATA_DIR.joinpath('nmag/'), data_format='Nmag')
+
+
+class TestFakeDataReader(DataReaderTestBase):
+    @classmethod
+    def setUpClass(cls):
+        """
+        Create an instance of `NmagDataReader` which can be re-used for each individual test.
+        """
+        cls.data_reader = FakeDataReader()

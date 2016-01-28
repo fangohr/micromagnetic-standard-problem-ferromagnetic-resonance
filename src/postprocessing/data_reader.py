@@ -9,9 +9,13 @@ from . import util
 # subclass of BaseDataReader (similar to OOMMFDataReader and
 # NmagDataReader above) and add it to `data_reader_classes` below.
 #
-# The only methods you should need to implement are
-# `_read_average_magnetisation_data` and
-# `_read_spatially_resolved_magnetisation_data`.
+# The methods you need to implement are:
+#
+#   _get_timesteps()
+#   _get_average_magnetisation()
+#   _get_spatially_resolved_magnetisation()
+#
+# (Note the leading underscore in the names.)
 #
 
 class BaseDataReader(object):
@@ -26,7 +30,6 @@ class BaseDataReader(object):
 
     def __init__(self, data_dir):
         self.data_dir = Path(data_dir)
-        self.data_avg = self._read_average_magnetisation_data()
 
     def get_timesteps(self, unit='s'):
         """
@@ -36,9 +39,7 @@ class BaseDataReader(object):
         The argument `unit` can either be 's' (= seconds) or 'ns'
         (= nanoseconds).
         """
-        # Timestamps are contained in the first column of the averaged data
-        timesteps = self.data_avg[:, 0]
-        return timesteps * util.get_conversion_factor('s', unit)
+        return self._get_timesteps() * util.get_conversion_factor('s', unit)
 
     def get_dt(self, unit='s'):
         """
@@ -63,8 +64,7 @@ class BaseDataReader(object):
         spatially averaged magnetization sampled at the time-
         steps during the simulation.
         """
-        idx = util.get_index_of_m_avg_component(component)
-        return self.data_avg[:, idx]
+        return self._get_average_magnetisation(component)
 
     def get_spatially_resolved_magnetisation(self, component):
         """
@@ -75,36 +75,61 @@ class BaseDataReader(object):
         the shape of the returned array is (N, 24, 24), where N is the
         number of timesteps present in the simulation.
         """
-        return self._read_spatially_resolved_magnetisation_data(component)
+        return self._get_spatially_resolved_magnetisation(component)
 
-    def _read_average_magnetisation_data(self):
+    def _get_timesteps(self):
+        raise NotImplementedError(
+            "Data reader of type '{}' does not implement "
+            "_get_timesteps()".format(self.__class__.__name__))
+
+    def _get_average_magnetisation(self):
         raise NotImplementedError(
             "Data reader of type '{}' does not implement reading of "
             "spatially averaged magnetisation data.".format(self.__class__.__name__))
 
-    def _read_spatially_resolved_magnetisation_data(self, component):
+    def _get_spatially_resolved_magnetisation(self, component):
         raise NotImplementedError(
             "Data reader of type '{}' does not implement reading of "
             "spatially resolved magnetisation data.".format(self.__class__.__name__))
 
 
 class OOMMFDataReader(BaseDataReader):
-    def _read_average_magnetisation_data(self):
-        filename = str(self.data_dir.joinpath('dynamic_txyz.txt'))
-        return np.loadtxt(filename)
+    def __init__(self, data_dir):
+        super(OOMMFDataReader, self).__init__(data_dir)
 
-    def _read_spatially_resolved_magnetisation_data(self, component):
+        data_avg_filename = str(self.data_dir.joinpath('dynamic_txyz.txt'))
+        self.data_avg = np.loadtxt(data_avg_filename)
+
+    def _get_timesteps(self):
+        # Timestamps are contained in the first column of the averaged data
+        return self.data_avg[:, 0]
+
+    def _get_average_magnetisation(self, component):
+        idx = util.get_index_of_m_avg_component(component)
+        return self.data_avg[:, idx]
+
+    def _get_spatially_resolved_magnetisation(self, component):
         filename = str(self.data_dir.joinpath('m{}s.npy'.format(component)))
         m = np.load(filename)
         return m.reshape(-1, 24, 24)
 
 
 class NmagDataReader(BaseDataReader):
-    def _read_average_magnetisation_data(self):
-        data_avg_filename = str(self.data_dir.joinpath('dynamic_txyz.txt'))
-        return np.loadtxt(data_avg_filename)
+    def __init__(self, data_dir):
+        super(NmagDataReader, self).__init__(data_dir)
 
-    def _read_spatially_resolved_magnetisation_data(self, component):
+        data_avg_filename = str(self.data_dir.joinpath('dynamic_txyz.txt'))
+        self.data_avg = np.loadtxt(data_avg_filename)
+
+    def _get_timesteps(self):
+        # Timestamps are contained in the first column of the averaged data
+        return self.data_avg[:, 0]
+
+    def _get_average_magnetisation(self, component):
+        idx = util.get_index_of_m_avg_component(component)
+        return self.data_avg[:, idx]
+
+    def _get_spatially_resolved_magnetisation(self, component):
         filename = str(self.data_dir.joinpath('m{}s.npy'.format(component)))
         m = np.load(filename)
         return m.reshape(-1, 24, 24)
