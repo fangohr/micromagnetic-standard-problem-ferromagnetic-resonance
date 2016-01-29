@@ -1,7 +1,56 @@
+import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+import numpy as np
+from matplotlib import cm
 
-from .fft_utils import get_fft_frequencies, get_spectrum_via_method_1, get_spectrum_via_method_2
+from .fft_utils import \
+    get_fft_frequencies, get_spectrum_via_method_1, get_spectrum_via_method_2, \
+    find_peak_frequency, get_mode_amplitudes_at_freq, get_mode_phases_at_freq
 
+
+def rescale_cmap(cmap_name, low=0.0, high=1.0, plot=False):
+    import matplotlib._cm as _cm
+    '''
+    Example 1:
+    # equivalent scaling to cplot_like(blah, l_bias=0.33, int_exponent=0.0)
+    my_hsv = rescale_cmap('hsv', low = 0.3)
+    Example 2:
+    my_hsv = rescale_cmap(cm.hsv, low = 0.3)
+    '''
+    if type(cmap_name) is str:
+        cmap = eval('_cm._%s_data' % cmap_name)
+    else:
+        cmap = eval('_cm._%s_data' % cmap_name.name)
+    LUTSIZE = plt.rcParams['image.lut']
+    r = np.array(cmap['red'])
+    g = np.array(cmap['green'])
+    b = np.array(cmap['blue'])
+    range = high - low
+    r[:, 1:] = r[:, 1:] * range + low
+    g[:, 1:] = g[:, 1:] * range + low
+    b[:, 1:] = b[:, 1:] * range + low
+    _my_data = {'red': tuple(map(tuple, r)),
+                'green': tuple(map(tuple, g)),
+                'blue': tuple(map(tuple, b))
+                }
+    my_cmap = mpl.colors.LinearSegmentedColormap('my_hsv', _my_data, LUTSIZE)
+
+    if plot:
+        print('plotting')
+        plt.figure()
+        plt.plot(r[:, 0], r[:, 1], 'r', g[:, 0], g[:, 1], 'g', b[:, 0],
+                 b[:, 1], 'b', lw=3)
+        plt.axis(ymin=-0.2, ymax=1.2)
+        plt.show()
+
+    return my_cmap
+
+my_hsv = rescale_cmap(cm.hsv, low=0.3, high=0.8, plot=False)
+
+
+CMAP_AMPLITUDE = cm.coolwarm
+CMAP_PHASE = my_hsv
 
 def make_figure_2(data_reader, component='y',
                   xlim_upper=[0, 2.5], ylim_upper=None,
@@ -87,5 +136,76 @@ def make_figure_3(data_reader, component='y'):
     ax.set_ylim([1e-5, 1e0])
     ax.set_yscale('log')
     ax.legend(frameon=False)
+
+    return fig
+
+
+def plot_mode_component(ax, data, label, vmin, vmax, cmap):
+    ax.imshow(data, cmap=cmap, vmin=vmin, vmax=vmax, origin='lower')
+    ax.set_title(label)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+
+def plot_colorbar(ax, label, cmap, vmin, vmax, num_ticks, ticklabels=None):
+    norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax)
+    ticks = np.linspace(vmin, vmax, num_ticks)
+    cbar = mpl.colorbar.ColorbarBase(
+               ax, cmap, norm=norm, orientation='vertical', ticks=ticks)
+    cbar.set_label(label)
+    if ticklabels:
+        cbar.ax.set_yticklabels(ticklabels)
+
+
+def make_figure_4(data_reader, approx_freq=8.25):
+    """
+    Create Fig. 4 in the paper.
+
+    Returns a matplotlib figure with 2 x 3 panels displaying, respectively,
+    the amplitude and phase of the x/y/z component of the eigenmode at
+    frequency `approx_freq` (default: 8.25 GHz).
+
+    """
+    m_x = data_reader.get_spatially_resolved_magnetisation('x')
+    m_y = data_reader.get_spatially_resolved_magnetisation('y')
+    m_z = data_reader.get_spatially_resolved_magnetisation('z')
+
+    # We use the spectrum of the y-component to find the peak
+    timesteps = data_reader.get_timesteps(unit='s')
+    freqs = get_fft_frequencies(timesteps, unit='GHz')
+    spectrum_y = get_spectrum_via_method_2(m_y)
+    peak_freq = find_peak_frequency(freqs, spectrum_y, approx_freq=approx_freq)
+
+    amp_x = get_mode_amplitudes_at_freq(timesteps, m_x, peak_freq)
+    amp_y = get_mode_amplitudes_at_freq(timesteps, m_y, peak_freq)
+    amp_z = get_mode_amplitudes_at_freq(timesteps, m_z, peak_freq)
+
+    phase_x = get_mode_phases_at_freq(timesteps, m_x, peak_freq)
+    phase_y = get_mode_phases_at_freq(timesteps, m_y, peak_freq)
+    phase_z = get_mode_phases_at_freq(timesteps, m_z, peak_freq)
+
+    # Ensure that all three amplitude plots are on the same scale:
+    minVal = np.min([amp_x, amp_y, amp_z])
+    maxVal = np.max([amp_x, amp_y, amp_z])
+
+    fig = plt.figure(figsize=(8, 6))
+    gs = gridspec.GridSpec(2, 4, width_ratios=[4, 4, 4, 0.5],
+                                 height_ratios=[4, 4])
+    axes = [fig.add_subplot(g) for g in gs]
+
+    plot_mode_component(axes[0], amp_x, label='x', cmap=CMAP_AMPLITUDE, vmin=minVal, vmax=maxVal)
+    plot_mode_component(axes[1], amp_y, label='y', cmap=CMAP_AMPLITUDE, vmin=minVal, vmax=maxVal)
+    plot_mode_component(axes[2], amp_z, label='z', cmap=CMAP_AMPLITUDE, vmin=minVal, vmax=maxVal)
+    plot_colorbar(axes[3], label='Amplitude', cmap=CMAP_AMPLITUDE, vmin=0, vmax=maxVal, num_ticks=5)
+
+    plot_mode_component(axes[4], phase_x, label='x', cmap=CMAP_PHASE, vmin=-np.pi, vmax=+np.pi)
+    plot_mode_component(axes[5], phase_y, label='y', cmap=CMAP_PHASE, vmin=-np.pi, vmax=+np.pi)
+    plot_mode_component(axes[6], phase_z, label='z', cmap=CMAP_PHASE, vmin=-np.pi, vmax=+np.pi)
+    plot_colorbar(axes[7], label='Phase', cmap=CMAP_PHASE, vmin=-np.pi, vmax=np.pi, num_ticks=3,
+                  ticklabels=['-3.14', '0', '-3.14'])
+
+    fig.subplots_adjust(left=0.1, bottom=0.1, right=0.95, wspace=0.1)
+    fig.suptitle('{:.2f} GHz'.format(peak_freq), fontsize=20)
+    fig.tight_layout()
 
     return fig

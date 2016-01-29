@@ -1,4 +1,5 @@
 import numpy as np
+import scipy.signal
 
 from . import util
 
@@ -90,3 +91,61 @@ def get_spectrum_via_method_2(m_vals):
 
     # FIXME: We ignore the last element for now so that we can compare with the existing data.
     return spectrum_avg[:-1]
+
+
+def find_peak_frequency(freqs, spectrum, approx_freq):
+    """
+    Find the peak in the spectrum that is closest to the given
+    approximate frequency. Returns the exact frequency of the peak
+    extracted from the spectrum of the given magnetisation data.
+
+    *Arguments*
+
+    freqs:  1d numpy array
+
+        The FFT sample frequencies of the spectrum.
+
+    spectrum: 1d numpy array
+
+        The spectrum in which to search for a peak.
+
+    approx_freq: float
+
+        Approximate frequency for the peak to be determined.
+
+    """
+    # Find indices of peaks in the signal
+    widths = np.linspace(0.1, 1.0, 10)
+    peak_indices = scipy.signal.find_peaks_cwt(spectrum, widths)
+
+    # Find and return the peak frequency that is closest to `approx_freq`.
+    idx = abs(freqs[peak_indices] - approx_freq).argmin()
+    peak_freq = freqs[peak_indices[idx]]
+
+    return peak_freq
+
+
+def get_mode_amplitudes_at_freq(timesteps, m_vals, peak_freq):
+    """
+    """
+    freqs = get_fft_frequencies(timesteps, unit='GHz')
+    spectrum = get_spectrum_via_method_2(m_vals)
+
+    fft_coeffs = np.fft.rfft(m_vals, axis=0)
+
+    idx_peak_freq = abs(freqs - peak_freq).argmin()
+
+    return np.absolute(fft_coeffs[idx_peak_freq, :, :])
+
+
+def get_mode_phases_at_freq(timesteps, m_vals, peak_freq):
+    """
+    """
+    freqs = get_fft_frequencies(timesteps, unit='GHz')
+    spectrum = get_spectrum_via_method_2(m_vals)
+
+    fft_coeffs = np.fft.rfft(m_vals, axis=0)
+
+    idx_peak_freq = abs(freqs - peak_freq).argmin()
+
+    return np.angle(fft_coeffs[idx_peak_freq, :, :])
