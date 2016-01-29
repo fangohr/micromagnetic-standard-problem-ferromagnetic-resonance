@@ -31,3 +31,8 @@ def test__reproduce_figure_2():
 @image_comparison(baseline_images=['figure_3_OOMMF'], extensions=['png', 'pdf'], tol=TOL)
 def test__reproduce_figure_3():
     fig = make_figure_3(data_reader_oommf)
+
+
+@image_comparison(baseline_images=['figure_4_OOMMF'], extensions=['png', 'pdf'], tol=TOL)
+def test__reproduce_figure_4():
+    fig = make_figure_4(data_reader_oommf)
