@@ -21,5 +21,5 @@ def test__make_figure_3_zero_damping():
 
 @image_comparison(baseline_images=['mock_figure_3_nonzero_damping'], extensions=['png', 'pdf'], tol=TOL)
 def test__make_figure_3_nonzero_damping():
-    data_reader = FakeDataReader(damping=0.05)
+    data_reader = FakeDataReader(damping=0.08)
     fig = make_figure_3(data_reader)
