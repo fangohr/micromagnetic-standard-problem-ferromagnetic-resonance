@@ -157,32 +157,23 @@ def plot_colorbar(ax, label, cmap, vmin, vmax, num_ticks, ticklabels=None):
         cbar.ax.set_yticklabels(ticklabels)
 
 
-def make_figure_4(data_reader, approx_freq=8.25):
+def plot_mode_at_frequency(data_reader, freq):
     """
-    Create Fig. 4 in the paper.
-
-    Returns a matplotlib figure with 2 x 3 panels displaying, respectively,
-    the amplitude and phase of the x/y/z component of the eigenmode at
-    frequency `approx_freq` (default: 8.25 GHz).
-
+    Plot mode at the given frequency (in Hz).
     """
     m_x = data_reader.get_spatially_resolved_magnetisation('x')
     m_y = data_reader.get_spatially_resolved_magnetisation('y')
     m_z = data_reader.get_spatially_resolved_magnetisation('z')
 
-    # We use the spectrum of the y-component to find the peak
     timesteps = data_reader.get_timesteps(unit='s')
-    freqs = get_fft_frequencies(timesteps, unit='GHz')
-    spectrum_y = get_spectrum_via_method_2(m_y)
-    peak_freq = find_peak_frequency(freqs, spectrum_y, approx_freq=approx_freq)
 
-    amp_x = get_mode_amplitudes_at_freq(timesteps, m_x, peak_freq)
-    amp_y = get_mode_amplitudes_at_freq(timesteps, m_y, peak_freq)
-    amp_z = get_mode_amplitudes_at_freq(timesteps, m_z, peak_freq)
+    amp_x = get_mode_amplitudes_at_freq(timesteps, m_x, freq)
+    amp_y = get_mode_amplitudes_at_freq(timesteps, m_y, freq)
+    amp_z = get_mode_amplitudes_at_freq(timesteps, m_z, freq)
 
-    phase_x = get_mode_phases_at_freq(timesteps, m_x, peak_freq)
-    phase_y = get_mode_phases_at_freq(timesteps, m_y, peak_freq)
-    phase_z = get_mode_phases_at_freq(timesteps, m_z, peak_freq)
+    phase_x = get_mode_phases_at_freq(timesteps, m_x, freq)
+    phase_y = get_mode_phases_at_freq(timesteps, m_y, freq)
+    phase_z = get_mode_phases_at_freq(timesteps, m_z, freq)
 
     # Ensure that all three amplitude plots are on the same scale:
     minVal = np.min([amp_x, amp_y, amp_z])
@@ -205,7 +196,47 @@ def make_figure_4(data_reader, approx_freq=8.25):
                   ticklabels=['-3.14', '0', '-3.14'])
 
     fig.subplots_adjust(left=0.1, bottom=0.1, right=0.95, wspace=0.1)
-    fig.suptitle('{:.2f} GHz'.format(peak_freq), fontsize=20)
+    fig.suptitle('{:.2f} GHz'.format(freq), fontsize=20)
     fig.tight_layout()
 
     return fig
+
+
+def make_figure_4(data_reader):
+    """
+    Create Fig. 4 in the paper.
+
+    Returns a matplotlib figure with 2 x 3 panels displaying, respectively, the
+    amplitude and phase of the x/y/z component of the eigenmode at 8.25 GHz.
+
+    """
+    approx_freq = 8.25
+
+    # We use the spectrum of the y-component to find the peak
+    timesteps = data_reader.get_timesteps(unit='s')
+    freqs = get_fft_frequencies(timesteps, unit='GHz')
+    m_y = data_reader.get_spatially_resolved_magnetisation('y')
+    spectrum_y = get_spectrum_via_method_2(m_y)
+    peak_freq = find_peak_frequency(freqs, spectrum_y, approx_freq=approx_freq)
+
+    return plot_mode_at_frequency(data_reader, peak_freq)
+
+
+def make_figure_5(data_reader):
+    """
+    Create Fig. 5 in the paper.
+
+    Returns a matplotlib figure with 2 x 3 panels displaying, respectively, the
+    amplitude and phase of the x/y/z component of the eigenmode at 11.25 GHz.
+
+    """
+    approx_freq = 11.25
+
+    # We use the spectrum of the y-component to find the peak
+    timesteps = data_reader.get_timesteps(unit='s')
+    freqs = get_fft_frequencies(timesteps, unit='GHz')
+    m_y = data_reader.get_spatially_resolved_magnetisation('y')
+    spectrum_y = get_spectrum_via_method_2(m_y)
+    peak_freq = find_peak_frequency(freqs, spectrum_y, approx_freq=approx_freq)
+
+    return plot_mode_at_frequency(data_reader, peak_freq)

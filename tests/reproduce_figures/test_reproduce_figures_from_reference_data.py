@@ -1,7 +1,7 @@
 from matplotlib.testing.decorators import image_comparison
 from pathlib import Path
 
-from postprocessing import DataReader, make_figure_2, make_figure_3, make_figure_4
+from postprocessing import DataReader, make_figure_2, make_figure_3, make_figure_4, make_figure_5
 
 TOL = 0
 
@@ -36,3 +36,8 @@ def test__reproduce_figure_3():
 @image_comparison(baseline_images=['figure_4_OOMMF'], extensions=['png', 'pdf'], tol=TOL)
 def test__reproduce_figure_4():
     fig = make_figure_4(data_reader_oommf)
+
+
+@image_comparison(baseline_images=['figure_5_OOMMF'], extensions=['png', 'pdf'], tol=TOL)
+def test__reproduce_figure_5():
+    fig = make_figure_5(data_reader_oommf)
