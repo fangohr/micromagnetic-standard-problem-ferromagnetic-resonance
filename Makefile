@@ -1,4 +1,4 @@
-all: unit-tests
+all: unit-tests reproduce-figures
 
 unit-tests:
 	make -C tests/unit_tests/
