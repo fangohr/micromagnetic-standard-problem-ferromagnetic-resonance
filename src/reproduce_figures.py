@@ -12,8 +12,6 @@ The resulting plots are saved to the directory `../figures/generated_plots/`.
 """
 
 import click
-import matplotlib; matplotlib.use('agg')
-import matplotlib.pyplot as plt
 import sys
 from pathlib import Path
 

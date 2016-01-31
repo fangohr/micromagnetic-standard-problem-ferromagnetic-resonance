@@ -1,3 +1,4 @@
+import matplotlib; matplotlib.use('agg')
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import matplotlib as mpl
