@@ -28,7 +28,7 @@ OOMMF_SCRIPTS="01_relaxation_stage.mif 02_dynamic_stage.mif oommf_postprocessing
 #
 if [ ! -f "${OOMMFTCL}" ]; then
     echo
-    echo "File does not exist: ${OOMMFTCL}"
+    echo "File not found: ${OOMMFTCL}"
     echo "Please set the environment variable OOMMFTCL to point"
     echo "to the file 'oommf.tcl' in your OOMMF installation."
     echo
