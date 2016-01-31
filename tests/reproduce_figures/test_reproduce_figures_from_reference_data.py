@@ -1,3 +1,10 @@
+"""
+The tests in this file re-genereate Figures 2-5 in the paper
+from pre-computed reference data and check that the resulting
+plots are identical with previously generated reference plots.
+
+"""
+
 from matplotlib.testing.decorators import image_comparison
 from pathlib import Path
 
