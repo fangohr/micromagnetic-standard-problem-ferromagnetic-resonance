@@ -12,7 +12,7 @@ OOMMF_OUTPUT_FILES = $(foreach filename,$(OOMMF_OUTPUT_FILENAMES),$(OOMMF_DATA_D
 OOMMFTCL ?= $(shell echo $(shell dirname $(shell which oommf))/../opt/oommf.tcl) \
 
 
-all: unit-tests reproduce-figures
+all: unit-tests reproduce-figures-from-reference-data generate-oommf-data reproduce-figures-from-scratch
 
 unit-tests:
 	make -C tests/unit_tests/
