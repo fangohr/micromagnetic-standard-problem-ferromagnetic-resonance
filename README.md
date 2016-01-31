@@ -54,16 +54,23 @@ To run the code in this repository, the following software must be installed:
 
 _TODO: Mention the versions that are required (if any), or at least the ones we used for testing._
 
-The easiest way of getting all these installed is using [`conda`](http://conda.pydata.org/docs/).
-Since conda does not touch your system installation and installs everything in a local directory
-(in a subfolder of your home directory by default), you can even do this temporarily to test this
-repository and then delete the conda installation folder again, which will bring your system.
+#### Installing required prerequisites using `conda`
 
-The following instructions assume that you are using `conda`. If this is not the case you will
-have to install the required dependencies manually or via the package manager of your operating
-system.
+The easiest way of getting all the prerequisites installed is using [`conda`](http://conda.pydata.org/docs/).
+The `conda` installer allows you to create dedicated Python environments very easily
+(similar to Python's `virtualenv`, but in a much cleaner and more powerful way).
+It also allows to install non-Python packages and thus provides an easy way of making OOMMF available.
 
-- Install `conda`. There are two options for this
+Since conda does not touch your system installation at all and installs everything in a local directory
+(in a subfolder of your home directory by default), you can even use conda temporarily to test this
+repository. Afterwards you can delete the conda installation folder again, which will bring your system
+back into the original state.
+
+Use the following steps to install `conda` and create a conda environment containing all required
+dependencies. (If you do not want to use `conda` then you will need to install these manually or
+via the package manager of your operating system.)
+
+1. Install `conda`. There are two options for this
 
   - Install the [full Anaconda Python distribution](https://www.continuum.io/downloads).
     This is almost 300 MB in size but comes bundled with a lot of Python packages useful for scientific computing.
@@ -76,21 +83,34 @@ system.
   (for example, `~/miniconda3` in your home directory). If you wish to get rid of your conda installation,
   simply delete this folder.
 
-- Add the following line to your `~/.bashrc` file (the installer will offer to do this for you automatically),
-  and then run `source ~/.bashrc`.
+2. Make sure that your `~/.bashrc` file contains a  line similar to the following. The conda installer will
+   typically offer to add this for you automatically.
 
-       export PATH="~/miniconda3/bin:$PATH"
+       export PATH=~/miniconda3/bin:$PATH
 
-  This makes the conda executable available in the terminal.
+   Note that the exact path may depend on whether you installed Miniconda or the full Anaconda distribution,
+   so if you add this manually then make sure it points to the correct location of your installation.
 
-- Create a new conda environment, install the packages specified in `conda_environment.yml` (which include the
-  requirements listed above) and activate this environment.
+3. Run `source ~/.bashrc` to activate the conda installation. This makes the conda executable available in the terminal.
 
-      conda env create -f conda_environment.yml
-      source activate fmr-stdproblem
+4. Create a new conda environment called `fmr-stdproblem` which contains all necessary packages (these are specified in the file `conda_environment.yml`).
+
+       conda env create --name fmr-stdproblem -f conda_environment.yml
+
+5. Activate the newly created environment
+
+       source activate fmr-stdproblem
+
+This should provide all the necessary requirements. If you ever want to delete the conda installation,
+simply remove the folder where conda was installed (for example, `~/miniconda3`) and remove the line
+rom your `~/.bashrc` file that was added in step 2 above.
 
 
 ### Running scripts in this repository
+
+- If you are using conda (see instructions above), make sure that your conda environment for this repository is activated:
+
+      source activate fmr-stdproblem
 
 - Clone this repository and change into the newly created directory.
 
