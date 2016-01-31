@@ -1,0 +1,56 @@
+# MIF 2.1
+# Energy minimisation of initial state for 200 nm x 200 nm x 10 nm film.
+
+# Sample geometry
+Specify Oxs_BoxAtlas:atlas {
+    xrange {0  120e-9}
+    yrange {0  120e-9}
+    zrange {0  10e-9}
+}
+
+# Mesh
+Specify Oxs_RectangularMesh:mesh {
+    cellsize {5e-9 5e-9 5e-9}
+    atlas :atlas
+}
+
+# Exchange energy.
+Specify Oxs_UniformExchange {
+    A   1.3e-11
+}
+
+# Demagnetisation energy.
+Specify Oxs_Demag {}
+
+# External magnetic bias field
+Specify Oxs_FixedZeeman {
+    field { Oxs_UniformVectorField {
+	vector { 0.813405448449 0.581697151818 0.0}
+    } }
+    multiplier 8e4
+}
+
+# LLG parameters
+Specify Oxs_RungeKuttaEvolve {
+    alpha 1.0
+    gamma_G 2.210173e5
+    start_dm 0.01
+}
+
+# Driver parameters
+Specify Oxs_TimeDriver {
+    evolver Oxs_RungeKuttaEvolve
+    stopping_time 5e-9
+    stage_count 1
+    mesh :mesh
+    Ms 8.0e5
+    m0 { Oxs_UniformVectorField {
+	vector {0.0 0.0 1.0}
+    } }
+    basename relax
+    vector_field_output_format {text %#.8g}
+}
+
+Destination mags mmArchive
+
+Schedule Oxs_TimeDriver::Magnetization mags Stage 1

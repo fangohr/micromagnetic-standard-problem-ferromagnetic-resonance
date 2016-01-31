@@ -35,6 +35,6 @@ test:
     - oommf +version
     - make unit-tests
     - make reproduce-figures
+    - make generate-oommf-data
     # - make integration-tests
-    # - make generate-oommf-data
     # - make reproduce-figures-from-scratch
