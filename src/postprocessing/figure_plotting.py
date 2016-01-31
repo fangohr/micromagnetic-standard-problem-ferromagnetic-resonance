@@ -122,14 +122,14 @@ def make_figure_3(data_reader, component='y'):
 
     # Compute frequencies and power spectrum via the two different methods.
     freqs = get_fft_frequencies(timesteps, unit='GHz')
-    psd1 = get_spectrum_via_method_1(m_avg)
-    psd2 = get_spectrum_via_method_2(m_full)
+    spectrum_1 = get_spectrum_via_method_1(m_avg)
+    spectrum_2 = get_spectrum_via_method_2(m_full)
 
     # Plot both power spectra into the same figure
     fig = plt.figure(figsize=(7, 5.5))
     ax = fig.add_subplot(1, 1, 1)
-    ax.plot(freqs, psd1, label='Method 1')
-    ax.plot(freqs, psd2, color='g', lw=2, label='Method 2')
+    ax.plot(freqs, spectrum_1, label='Method 1')
+    ax.plot(freqs, spectrum_2, color='g', lw=2, label='Method 2')
     ax.set_xlabel('Frequency (GHz)')
     ax.set_ylabel('Spectral density')
     ax.set_xlim([0.2, 20])
