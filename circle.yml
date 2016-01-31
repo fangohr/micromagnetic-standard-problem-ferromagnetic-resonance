@@ -23,9 +23,10 @@ dependencies:
     - conda update -q conda
     - conda info -a
 
-    # Install OOMMF and relevant Python packages
-    - conda install -c http://conda.anaconda.org/maxalbert numpy scipy pip functools32 click nose oommf=12a5bis_20120928 matplotlib==1.5.1.post960+g628427a cycler
-    - pip install pathlib
+    # Install OOMMF and relevant Python packages into new
+    # conda environment 'fmr-stdproblem' and activate it.
+    - conda env create -f conda_environment.yml
+    - source activate fmr-stdproblem
 
 test:
   override:
