@@ -25,7 +25,7 @@ Depending on your interest and expertise, you can use this repository in various
 
 - Run our micromagnetic simulation scripts to re-generate the data files (OOMMF required).
 
-  You can then (optionally) produce figures 2-5 from this re-computed data.
+- Produce figures 2-5 "from scratch", based on freshly computed micromagnetic simulation data from the previous step.
   This is useful to verify that you get the same results on your own computer.
 
 
@@ -70,7 +70,7 @@ Use the following steps to install `conda` and create a conda environment contai
 dependencies. (If you do not want to use `conda` then you will need to install these manually or
 via the package manager of your operating system.)
 
-1. Install `conda`. There are two options for this
+1. Install `conda`. There are two options for this:
 
   - Install the [full Anaconda Python distribution](https://www.continuum.io/downloads).
     This is almost 300 MB in size but comes bundled with a lot of Python packages useful for scientific computing.
