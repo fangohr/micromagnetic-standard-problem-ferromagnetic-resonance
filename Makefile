@@ -11,15 +11,15 @@ all: unit-tests reproduce-figures
 unit-tests:
 	make -C tests/unit_tests/
 
-reproduce-figures:
-	make -C tests/reproduce_figures/
-
 generate-oommf-data: $(OOMMF_OUTPUT_FILES)
 $(OOMMF_OUTPUT_FILES):
 	@echo "Generating OOMMF data... This may take a while."
 	cd src/micromagnetic_simulation_scripts/oommf/ && ./generate_data.sh
 
+reproduce-figures-from-reference-data:
+	make -C tests/reproduce_figures/
+
 reproduce-figures-from-scratch: generate-oommf-data
 	cd src && python reproduce_figures.py
 
-.PHONY: all unit-tests generate-oommf-data reproduce-figures-from-scratch
+.PHONY: all unit-tests generate-oommf-data reproduce-figures-from-reference-data reproduce-figures-from-scratch

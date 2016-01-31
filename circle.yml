@@ -33,7 +33,7 @@ test:
     - tclsh ${OOMMFTCL} +version
     - oommf +version
     - make unit-tests
-    - make reproduce-figures
+    - make reproduce-figures-from-reference-data
     - make generate-oommf-data
     - make reproduce-figures-from-scratch
     # - make integration-tests
