@@ -5,6 +5,7 @@ plots are identical with previously generated reference plots.
 
 """
 
+import matplotlib; matplotlib.use('agg')
 from matplotlib.testing.decorators import image_comparison
 from pathlib import Path
 
