@@ -1,4 +1,4 @@
-This is the folder where the simulation scripts in
+This is an empty folder in which the simulation scripts in
 [src/micromagnetic_simulation_scripts/](../../src/micromagnetic_simulation_scripts/)
 will place their output data. To produce this data, run the following commands
 in the toplevel directory of this repository.
