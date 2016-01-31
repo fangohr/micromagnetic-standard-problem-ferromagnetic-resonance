@@ -26,9 +26,12 @@ OOMMF_SCRIPTS="01_relaxation_stage.mif 02_dynamic_stage.mif oommf_postprocessing
 # Check if the variable OOMMFTCL points to a valid OOMMF installation,
 # otherwise raise an error.
 #
-if [ -z "${OOMMFTCL+1}" ]; then
+if [ ! -f "${OOMMFTCL}" ]; then
+    echo
+    echo "File does not exist: ${OOMMFTCL}"
     echo "Please set the environment variable OOMMFTCL to point"
     echo "to the file 'oommf.tcl' in your OOMMF installation."
+    echo
     exit
 fi
 
@@ -82,6 +85,8 @@ repository [1]. It can safely be deleted if it is no longer needed.
 
 [1] https://github.com/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance
 " > README.txt
+
+echo "Generating OOMMF data... This may take a while."
 
 #
 # Run the relaxation stage.

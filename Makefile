@@ -5,6 +5,12 @@ OOMMF_OUTPUT_FILENAMES = dynamic_txyz.txt mxs.npy mys.npy mzs.npy
 # each filename in OOMMF_OUTPUT_FILENAMES.
 OOMMF_OUTPUT_FILES = $(foreach filename,$(OOMMF_OUTPUT_FILENAMES),$(OOMMF_DATA_DIR)/$(filename) )
 
+# Set environment variable needed for the target 'generate-oommf-data'.
+# This makes a guess where 'oommf.tcl' is located, based on the assumption
+# that OOMMF was installed using conda. If this guess is wrong you need to
+# set this environment variable manually.
+OOMMFTCL ?= $(shell echo $(shell dirname $(shell which oommf))/../opt/oommf.tcl) \
+
 
 all: unit-tests reproduce-figures
 
@@ -16,8 +22,7 @@ reproduce-figures:
 
 generate-oommf-data: $(OOMMF_OUTPUT_FILES)
 $(OOMMF_OUTPUT_FILES):
-	@echo "Generating OOMMF data... This may take a while."
-	cd src/micromagnetic_simulation_scripts/oommf/ && ./generate_data.sh
+	@cd src/micromagnetic_simulation_scripts/oommf/ && OOMMFTCL=$(OOMMFTCL) ./generate_data.sh
 
 reproduce-figures-from-scratch: generate-oommf-data
 	cd src && python reproduce_figures.py
