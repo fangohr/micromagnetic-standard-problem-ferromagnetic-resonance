@@ -7,13 +7,13 @@ TOL = 0
 
 # Get absolute path to the current directory (to avoid problems if
 # this script is invoked from somewhere else).
-here = Path(__file__).parent.resolve()
+HERE = Path(__file__).parent.resolve()
 
 #
 # Define input and output directories.
 #
-REF_DATA_DIR_OOMMF = here.joinpath('../../micromagnetic_simulation_data/reference_data/oommf/')
-REF_DATA_DIR_NMAG = here.joinpath('../../micromagnetic_simulation_data/reference_data/nmag/')
+REF_DATA_DIR_OOMMF = HERE.joinpath('../../micromagnetic_simulation_data/reference_data/oommf/')
+REF_DATA_DIR_NMAG = HERE.joinpath('../../micromagnetic_simulation_data/reference_data/nmag/')
 
 #
 # Create SimulationReader which provides a convenient way of
