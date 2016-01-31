@@ -1,0 +1,5 @@
+*.pyc
+*~
+figures/generated_plots
+tests/reproduce_figures/result_images
+tests/unit_tests/result_images/
