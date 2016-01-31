@@ -1,11 +1,10 @@
-This directory contains the "raw" micromagnetic simulation data used
-to produce Figures 2-5 in the paper.
+Contents of this folder:
 
-- [reference_data/](./reference_data/) contains pre-computed data from
-  which the figures in the paper were actually produced.
+- [reference_data/](./reference_data/) contains the "raw" micromagnetic simulation data
+  which was used to produce Figures 2-5 in the paper. It was computed using the script
+  `generate_data.sh` in the folder [src/micromagnetic_simulation_scripts/](../../src/micromagnetic_simulation_scripts/)
+  of this repository.
 
-- [generated_data/](./generated_data/) is initially an empty folder.
-  This is where the output data produced by the scripts in
-  [src/micromagnetic_simulation_scripts/](../src/micromagnetic_simulation_scripts/)
-  will be placed (e.g. when running `make generate-oommf-data` in
-  the toplevel folder of this repository).
+- [generated_data/](./generated_data/) is an empty folder. When running the simulation
+  scripts in [src/micromagnetic_simulation_scripts/](../../src/micromagnetic_simulation_scripts/)
+  this is where the resulting output data will be placed.
