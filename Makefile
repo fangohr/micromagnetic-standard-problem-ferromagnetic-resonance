@@ -19,4 +19,7 @@ $(OOMMF_OUTPUT_FILES):
 	@echo "Generating OOMMF data... This may take a while."
 	cd src/micromagnetic_simulation_scripts/oommf/ && ./generate_data.sh
 
-.PHONY: all unit-tests
+reproduce-figures-from-scratch: generate-oommf-data
+	cd src && python reproduce_figures.py
+
+.PHONY: all unit-tests generate-oommf-data reproduce-figures-from-scratch
