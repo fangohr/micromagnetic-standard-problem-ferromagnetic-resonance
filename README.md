@@ -79,31 +79,31 @@ system.
 - Add the following line to your `~/.bashrc` file (the installer will offer to do this for you automatically),
   and then run `source ~/.bashrc`.
 
-     export PATH="~/miniconda3/bin:$PATH"
+       export PATH="~/miniconda3/bin:$PATH"
 
-   This makes the conda executable available in the terminal.
+  This makes the conda executable available in the terminal.
 
 - Create a new conda environment, install the packages specified in `conda_environment.yml` (which include the
   requirements listed above) and activate this environment.
 
-    conda env create -f conda_environment.yml
-    source activate fmr-stdproblem
+      conda env create -f conda_environment.yml
+      source activate fmr-stdproblem
 
 
 ### Running scripts in this repository
 
 - Clone this repository and change into the newly created directory.
 
-    git clone https://github.com/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.git
-    cd micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite
+      git clone https://github.com/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.git
+      cd micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite
 
 - Run the unit tests to check that everything is installed correctly. (This step is optional but recommended.)
 
-    make unit-tests
+      make unit-tests
 
 - Reproduce the figures using our pre-computed reference data:
 
-    make reproduce-figures-from-reference-data
+      make reproduce-figures-from-reference-data
 
   If the unit tests passed then this step should also work because the
   only difference is that it uses 'real' data instead of mock data.
@@ -113,7 +113,7 @@ system.
 
 - Re-generate the raw data by running the OOMMF simulation:
 
-    make generate-oommf-data
+      make generate-oommf-data
 
   This will produce four data files (`dynamic_txyz.txt`, `mxs.npy`, `mys.npy`, `mzs.npy`)
   in the directory `micromagnetic_simulation_data/generated_data/oommf/` in this repository.
