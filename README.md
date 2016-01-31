@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.svg?style=svg)](https://circleci.com/gh/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite)
+[![Circle CI](https://circleci.com/gh/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite)
 
 # Proposal of a micromagnetic standard problem for ferromagnetic resonance simulations
 
