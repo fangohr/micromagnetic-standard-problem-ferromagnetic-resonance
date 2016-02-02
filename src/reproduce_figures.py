@@ -11,8 +11,9 @@ The resulting plots are saved to the directory `../figures/generated_plots/`.
 
 """
 
-import click
+import argparse
 import os
+import textwrap
 import sys
 
 from postprocessing import DataReader, make_figure_2, make_figure_3, make_figure_4, make_figure_5
@@ -22,52 +23,46 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 def check_input_data_exists(data_dir):
     """
-    Check that all required input files exists and exit if this is not the case.
+    Check that all required input files exists and abort if this is not the case.
     """
     filenames = ['dynamic_txyz.txt', 'mxs.npy', 'mys.npy', 'mzs.npy']
 
-    if not all([data_dir.joinpath(fname).exists() for fname in filenames]):
-        print("Could not find input data in the following directory:\n\n   {data_dir}.\n\n"
-              "Please make sure this directory exists and contains the following\n"
-              "files: {filenames}\n\n"
-              "You can use '--data-dir' to specify a different input data directory\n"
-              "(run 'python reproduce_figures.py --help' for details).\n"
-              "".format(data_dir=data_dir, filenames=filenames))
+    def input_data_file_exists(fname):
+        return os.path.exists(os.path.join(data_dir, fname))
+
+    if not all([input_data_file_exists(fname) for fname in filenames]):
+        print(textwrap.dedent("""\
+            Could not find input data in the following directory:
+
+                {data_dir}
+
+            Please make sure this directory exists and contains the following
+            files: {filenames}
+
+            You can use '--data-dir' to specify a different input data directory
+            (run 'python reproduce_figures.py --help' for details).
+            """.format(data_dir=data_dir, filenames=filenames)))
         sys.exit()
 
 
-@click.command()
-@click.option('--data-dir',
-              default=os.path.join(here, '../micromagnetic_simulation_data/generated_data/oommf/'),
-              help='Directory containing the raw simulation data.',
-              type=click.Path(),
-              )
-@click.option('--output-dir',
-              default=os.path.join(here, '../figures/generated_plots/'),
-              help='Directory where the output plots will be saved.',
-              type=click.Path(),
-             )
 def reproduce_figures(data_dir, output_dir):
     """
     This function reproduces Figures 2-5. It reads the raw simulation
     data from `data_dir` and stores the resulting plots in `output_dir`.
 
     """
-    data_dir = Path(data_dir)
-    output_dir = Path(output_dir)
-
     check_input_data_exists(data_dir)
 
     # Create output directory if it does not exists
-    if not output_dir.exists():
-        output_dir.mkdir(parents=True)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     print("Using the following data and output directories \n"
           "(run 'python reproduce_figures.py --help' to see \n"
           "how you can change these).\n")
 
-    print("Input data directory:\n   {}\n".format(data_dir.resolve()))
-    print("Output directory:\n   {}\n".format(output_dir.resolve()))
+    print("Input data directory:\n   {}\n".format(os.path.abspath(data_dir)))
+    print("Output directory:\n   {}\n".format(os.path.abspath(data_dir)))
 
     # Create DataReader which provides a convenient way of
     # reading raw simulation data and computing derived data.
@@ -92,4 +87,14 @@ def reproduce_figures(data_dir, output_dir):
 
 
 if __name__ == '__main__':
-    reproduce_figures()
+    default_data_dir = os.path.join(here, '../micromagnetic_simulation_data/generated_data/oommf/')
+    default_output_dir = os.path.join(here, '../figures/generated/plots/')
+
+    parser = argparse.ArgumentParser(description='Reproduce figures 2-5 in the paper.')
+    parser.add_argument('--data-dir', dest='data_dir', type=str, default=default_data_dir,
+                        help='Directory containing the raw simulation data')
+    parser.add_argument('--output-dir', dest='output_dir', type=str, default=default_output_dir,
+                        help='Directory where the output plot will be saved')
+    args = parser.parse_args()
+
+    reproduce_figures(args.data_dir, args.output_dir)

@@ -3,7 +3,6 @@ channels:
   - http://conda.anaconda.org/maxalbert
 dependencies:
   - python=2.7
-  - click
   - matplotlib==1.5.1.post960+g628427a
   - nose
   - numpy
