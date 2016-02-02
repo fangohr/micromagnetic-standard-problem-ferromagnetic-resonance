@@ -6,8 +6,8 @@ plots are identical with previously generated reference plots.
 """
 
 import matplotlib; matplotlib.use('agg')
+import os
 from matplotlib.testing.decorators import image_comparison
-from pathlib import Path
 
 from postprocessing import DataReader, make_figure_2, make_figure_3, make_figure_4, make_figure_5
 
@@ -15,13 +15,13 @@ TOL = 0
 
 # Get absolute path to the current directory (to avoid problems if
 # this script is invoked from somewhere else).
-HERE = Path(__file__).parent.resolve()
+HERE = os.path.abspath(os.path.dirname(__file__))
 
 #
 # Define input and output directories.
 #
-REF_DATA_DIR_OOMMF = HERE.joinpath('../../micromagnetic_simulation_data/reference_data/oommf/')
-REF_DATA_DIR_NMAG = HERE.joinpath('../../micromagnetic_simulation_data/reference_data/nmag/')
+REF_DATA_DIR_OOMMF = os.path.join(HERE, '../../micromagnetic_simulation_data/reference_data/oommf/')
+REF_DATA_DIR_NMAG = os.path.join(HERE, '../../micromagnetic_simulation_data/reference_data/nmag/')
 
 #
 # Create SimulationReader which provides a convenient way of

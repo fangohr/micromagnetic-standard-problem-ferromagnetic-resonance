@@ -1,5 +1,5 @@
 import numpy as np
-from pathlib import Path
+import os
 
 from . import util
 
@@ -29,7 +29,7 @@ class BaseDataReader(object):
     """
 
     def __init__(self, data_dir):
-        self.data_dir = Path(data_dir)
+        self.data_dir = data_dir
 
     def get_timesteps(self, unit='s'):
         """
@@ -97,7 +97,7 @@ class OOMMFDataReader(BaseDataReader):
     def __init__(self, data_dir):
         super(OOMMFDataReader, self).__init__(data_dir)
 
-        data_avg_filename = str(self.data_dir.joinpath('dynamic_txyz.txt'))
+        data_avg_filename = os.path.join(self.data_dir, 'dynamic_txyz.txt')
         self.data_avg = np.loadtxt(data_avg_filename)
 
     def _get_timesteps(self):
@@ -109,7 +109,7 @@ class OOMMFDataReader(BaseDataReader):
         return self.data_avg[:, idx]
 
     def _get_spatially_resolved_magnetisation(self, component):
-        filename = str(self.data_dir.joinpath('m{}s.npy'.format(component)))
+        filename = os.path.join(self.data_dir, 'm{}s.npy'.format(component))
         m = np.load(filename)
         return m.reshape(-1, 24, 24)
 
@@ -118,7 +118,7 @@ class NmagDataReader(BaseDataReader):
     def __init__(self, data_dir):
         super(NmagDataReader, self).__init__(data_dir)
 
-        data_avg_filename = str(self.data_dir.joinpath('dynamic_txyz.txt'))
+        data_avg_filename = os.path.join(self.data_dir, 'dynamic_txyz.txt')
         self.data_avg = np.loadtxt(data_avg_filename)
 
     def _get_timesteps(self):
@@ -130,7 +130,7 @@ class NmagDataReader(BaseDataReader):
         return self.data_avg[:, idx]
 
     def _get_spatially_resolved_magnetisation(self, component):
-        filename = str(self.data_dir.joinpath('m{}s.npy'.format(component)))
+        filename = os.path.join(data_dir,'m{}s.npy'.format(component))
         m = np.load(filename)
         return m.reshape(-1, 24, 24)
 

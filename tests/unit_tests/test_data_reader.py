@@ -1,12 +1,12 @@
 import numpy as np
+import os
 from nose.tools import assert_equals, assert_true, assert_raises
-from pathlib import Path
 
 from postprocessing import DataReader
 from .mock_utils import FakeDataReader
 
-HERE = Path(__file__).parent.resolve()
-REF_DATA_DIR = HERE.joinpath('../../micromagnetic_simulation_data/reference_data/')
+HERE = os.path.abspath(os.path.dirname(__file__))
+REF_DATA_DIR = os.path.join(HERE, '../../micromagnetic_simulation_data/reference_data/')
 
 
 class DataReaderTestBase(object):
@@ -73,7 +73,7 @@ class DataReaderTestBase(object):
         """
         DataReader raises error during initialisation if data format is not supported.
         """
-        assert_raises(ValueError, DataReader, REF_DATA_DIR.joinpath('oommf/'), data_format='Foobar')
+        assert_raises(ValueError, DataReader, os.path.join(REF_DATA_DIR, 'oommf/'), data_format='Foobar')
 
 
 class TestDataReaderOOMMF(DataReaderTestBase):
@@ -82,7 +82,7 @@ class TestDataReaderOOMMF(DataReaderTestBase):
         """
         Create an instance of `OOMMFDataReader` which can be re-used for each individual test.
         """
-        cls.data_reader = DataReader(REF_DATA_DIR.joinpath('oommf/'), data_format='OOMMF')
+        cls.data_reader = DataReader(os.path.join(REF_DATA_DIR, 'oommf/'), data_format='OOMMF')
 
 
 class TestDataReaderNmag(DataReaderTestBase):
@@ -91,7 +91,7 @@ class TestDataReaderNmag(DataReaderTestBase):
         """
         Create an instance of `NmagDataReader` which can be re-used for each individual test.
         """
-        cls.data_reader = DataReader(REF_DATA_DIR.joinpath('nmag/'), data_format='Nmag')
+        cls.data_reader = DataReader(os.path.join(REF_DATA_DIR, 'nmag/'), data_format='Nmag')
 
 
 class TestFakeDataReader(DataReaderTestBase):

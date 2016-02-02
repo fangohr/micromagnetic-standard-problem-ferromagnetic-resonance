@@ -12,12 +12,12 @@ The resulting plots are saved to the directory `../figures/generated_plots/`.
 """
 
 import click
+import os
 import sys
-from pathlib import Path
 
 from postprocessing import DataReader, make_figure_2, make_figure_3, make_figure_4, make_figure_5
 
-here = Path(__file__).parent.resolve()
+here = os.path.abspath(os.path.dirname(__file__))
 
 
 def check_input_data_exists(data_dir):
@@ -38,12 +38,12 @@ def check_input_data_exists(data_dir):
 
 @click.command()
 @click.option('--data-dir',
-              default=str(here.joinpath('../micromagnetic_simulation_data/generated_data/oommf/')),
+              default=os.path.join(here, '../micromagnetic_simulation_data/generated_data/oommf/'),
               help='Directory containing the raw simulation data.',
               type=click.Path(),
               )
 @click.option('--output-dir',
-              default=str(here.joinpath('../figures/generated_plots/')),
+              default=os.path.join(here, '../figures/generated_plots/'),
               help='Directory where the output plots will be saved.',
               type=click.Path(),
              )
@@ -82,10 +82,10 @@ def reproduce_figures(data_dir, output_dir):
     fig5 = make_figure_5(data_reader)
 
     # Save plots to output directory
-    fig2.savefig(str(output_dir.joinpath('figure_2.png')))
-    fig3.savefig(str(output_dir.joinpath('figure_3.png')))
-    fig4.savefig(str(output_dir.joinpath('figure_4.png')))
-    fig5.savefig(str(output_dir.joinpath('figure_5.png')))
+    fig2.savefig(os.path.join(output_dir, 'figure_2.png'))
+    fig3.savefig(os.path.join(output_dir, 'figure_3.png'))
+    fig4.savefig(os.path.join(output_dir, 'figure_4.png'))
+    fig5.savefig(os.path.join(output_dir, 'figure_5.png'))
 
     print("Done.")
     print("Plots have been successfully generated in output directory.")
