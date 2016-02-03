@@ -130,7 +130,7 @@ class NmagDataReader(BaseDataReader):
         return self.data_avg[:, idx]
 
     def _get_spatially_resolved_magnetisation(self, component):
-        filename = os.path.join(data_dir,'m{}s.npy'.format(component))
+        filename = os.path.join(self.data_dir, 'm{}s.npy'.format(component))
         m = np.load(filename)
         return m.reshape(-1, 24, 24)
 
