@@ -43,14 +43,14 @@ repository).
 To run the code in this repository, the following software must be installed:
 
 * [OOMMF](http://math.nist.gov/oommf/)
-* [Nmag](http://nmag.soton.ac.uk/nmag/) (optional)
 * [Python](https://www.python.org)
 * Python modules:
   * numpy
   * scipy
   * matplotlib
   * click
-* [git](https://git-scm.com/) (to clone the repository)
+* [git](https://git-scm.com/) (to clone the repository) 
+* [Nmag](http://nmag.soton.ac.uk/nmag/) (optional)
 
 _TODO: Mention the versions that are required (if any), or at least the ones we used for testing._
 
