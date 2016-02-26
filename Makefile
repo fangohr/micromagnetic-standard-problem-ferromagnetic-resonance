@@ -37,7 +37,7 @@ unit-tests:
 compare-data: generate-oommf-data
 	$(TEST_RUNNER) $(TEST_OPTIONS) tests/compare_data/
 
-reproduce-figures-from-reference-data: generate-oommf-data
+reproduce-figures-from-reference-data:
 	@python src/reproduce_figures.py \
 	    --data-dir=$(DIR_OOMMF_REFERENCE_DATA) \
 	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_REFERENCE_DATA)
