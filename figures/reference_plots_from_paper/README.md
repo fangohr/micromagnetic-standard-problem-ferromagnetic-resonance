@@ -5,6 +5,6 @@ OOMMF data in [micromagnetic_simulation_data/reference_data/oommf/](../../microm
 You can reproduce these plots by running the following command from
 the toplevel folder of this repository.
 ```
-make reproduce-figures-from-reference-data
+make reproduce-figures-from-oommf-reference-data
 ```
 The resulting plots will be placed in [figures/generated_from_reference_data/oommf/](../../figures/generated_from_reference_data/oommf/).

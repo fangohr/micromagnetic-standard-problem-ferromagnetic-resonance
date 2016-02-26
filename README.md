@@ -141,7 +141,7 @@ rom your `~/.bashrc` file that was added in step 2 above.
 - Reproduce the figures using our pre-computed reference data:
 
   ````
-  make reproduce-figures-from-reference-data
+  make reproduce-figures-from-oommf-reference-data
   ````
 
   If the unit tests passed then this step should also work because the

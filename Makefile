@@ -29,7 +29,7 @@ OOMMFTCL ?= $(shell echo $(shell dirname $(shell which oommf))/../opt/oommf.tcl)
 TEST_RUNNER ?= nosetests
 TEST_OPTIONS ?= --nocapture --verbose
 
-all: unit-tests reproduce-figures-from-reference-data generate-oommf-data reproduce-figures-from-scratch
+all: unit-tests reproduce-figures-from-oommf-reference-data generate-oommf-data reproduce-figures-from-scratch-with-oommf
 
 unit-tests:
 	$(TEST_RUNNER) $(TEST_OPTIONS) tests/unit_tests/
@@ -37,12 +37,12 @@ unit-tests:
 compare-data: generate-oommf-data
 	$(TEST_RUNNER) $(TEST_OPTIONS) tests/compare_data/
 
-reproduce-figures-from-reference-data:
+reproduce-figures-from-oommf-reference-data:
 	@python src/reproduce_figures.py \
 	    --data-dir=$(DIR_OOMMF_REFERENCE_DATA) \
 	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_REFERENCE_DATA)
 
-reproduce-figures-from-scratch: generate-oommf-data
+reproduce-figures-from-scratch-with-oommf: generate-oommf-data
 	@python src/reproduce_figures.py \
 	    --data-dir=$(DIR_OOMMF_GENERATED_DATA) \
 	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_RECOMPUTED_DATA)
@@ -56,4 +56,4 @@ $(NMAG_OUTPUT_FILES):
 	@cd src/micromagnetic_simulation_scripts/nmag/ && ./generate_data.sh
 
 .PHONY: all unit-tests generate-oommf-data generate-nmag-data \
-	reproduce-figures-from-reference-data reproduce-figures-from-scratch
+	reproduce-figures-from-oommf-reference-data reproduce-figures-from-scratch-with-oommf
