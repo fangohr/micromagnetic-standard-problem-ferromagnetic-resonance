@@ -91,7 +91,7 @@ via the package manager of your operating system.)
    Note that the exact path may depend on whether you installed Miniconda or the full Anaconda distribution,
    so if you add this manually then make sure it points to the correct location of your installation.
 
-3. Run `source ~/.bashrc` to activate the conda installation. This makes the conda executable available in the terminal.
+3. Run `source ~/.bashrc` to activate the conda installation (opening a new terminal window is likely to work as well). This makes the conda executable available in the terminal.
 
 4. Create a new conda environment called `fmr-stdproblem` which contains all necessary packages (these are specified in the file `conda_environment.yml`).
 
