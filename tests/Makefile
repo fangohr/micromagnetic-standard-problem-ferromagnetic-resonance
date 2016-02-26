@@ -1,9 +1,12 @@
 all: unit-tests
 
 unit-tests:
-	make -C tests/unit_tests/
+	make -C unit_tests/
+
+compare-data:
+	make -C compare-data/
 
 reproduce-figures:
-	make -C tests/reproduce_figures/
+	make -C reproduce_figures/
 
 .PHONY: all unit-tests reproduce-figures

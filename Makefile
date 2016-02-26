@@ -30,6 +30,9 @@ generate-nmag-data: $(NMAG_OUTPUT_FILES)
 $(NMAG_OUTPUT_FILES):
 	@cd src/micromagnetic_simulation_scripts/nmag/ && ./generate_data.sh
 
+compare-data: generate-oommf-data
+	make -C tests/compare_data/
+
 reproduce-figures-from-reference-data:
 	make -C tests/reproduce_figures/
 

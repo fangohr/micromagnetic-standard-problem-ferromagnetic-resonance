@@ -11,6 +11,15 @@ Run them as follows:
   module works correctly. They use hand-crafted "fake" data to ensure that the
   output of computations can be compared to the expected result.
 
+- `compare_data/`
+
+  These tests re-generate the actual figures in the paper, both from pre-computed
+  micromagnetic simulation data and from data that was computed "from scratch" using
+  the scripts in [src/micromagnetic_simulation_scripts/oommf/](../src/micromagnetic_simulation_scripts/oommf/).
+  The resulting plots are compared with images that were produced previously (using the
+  unit-tested code) and visually inspected to ensure they are correct.
+
+
 - `reproduce_figures/`
 
   These tests re-generate the actual figures in the paper, both from pre-computed
