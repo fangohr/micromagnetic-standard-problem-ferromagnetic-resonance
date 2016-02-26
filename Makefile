@@ -26,7 +26,7 @@ generate-oommf-data: $(OOMMF_OUTPUT_FILES)
 $(OOMMF_OUTPUT_FILES):
 	@cd src/micromagnetic_simulation_scripts/oommf/ && OOMMFTCL=$(OOMMFTCL) ./generate_data.sh
 
-generate-oommf-data: $(NMAG_OUTPUT_FILES)
+generate-nmag-data: $(NMAG_OUTPUT_FILES)
 $(NMAG_OUTPUT_FILES):
 	@cd src/micromagnetic_simulation_scripts/nmag/ && ./generate_data.sh
 
