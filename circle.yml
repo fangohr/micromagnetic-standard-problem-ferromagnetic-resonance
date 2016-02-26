@@ -7,7 +7,7 @@ machine:
 general:
   artifacts:
     #- "micromagnetic_simulation_data/generated_data/oommf/"
-    - "figures/generated_plots/"
+    - "figures/generated_from_reference_data/oommf/"
 
 dependencies:
   # Note, we used to use the naive caching of docker images, but found that
