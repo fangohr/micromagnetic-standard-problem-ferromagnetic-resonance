@@ -9,7 +9,7 @@
 #
 # The output directory for the generated data can be provided as a
 # command line argument. If it is not specified then the default value
-# '../../../micromagnetic_simulation_data/generated_data/nmag/' is
+# '../../../micromagnetic_simulation_data/recomputed_data/nmag/' is
 # used.
 
 
@@ -29,7 +29,7 @@ NMAG_SCRIPTS="01_relaxation_stage.py 02_dynamic_stage.py nmag_postprocessing.py 
 if [ "$#" -ge 1 ]; then
     OUTPUT_DIR=$1
 else
-    OUTPUT_DIR='../../../micromagnetic_simulation_data/generated_data/nmag/'
+    OUTPUT_DIR='../../../micromagnetic_simulation_data/recomputed_data/nmag/'
 fi
 echo "Data will be generated in output directory: '$OUTPUT_DIR'"
 

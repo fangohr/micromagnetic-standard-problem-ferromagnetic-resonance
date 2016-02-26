@@ -1,14 +1,14 @@
 #
 # Define paths to data files and output directories for figures.
 #
-DIR_OOMMF_GENERATED_DATA = micromagnetic_simulation_data/generated_data/oommf
+DIR_OOMMF_GENERATED_DATA = micromagnetic_simulation_data/recomputed_data/oommf
 DIR_OOMMF_REFERENCE_DATA = micromagnetic_simulation_data/reference_data/oommf
 OOMMF_OUTPUT_FILENAMES = dynamic_txyz.txt mxs.npy mys.npy mzs.npy
 
 DIR_PLOTS_FROM_OOMMF_REFERENCE_DATA = figures/generated_from_reference_data/oommf/
 DIR_PLOTS_FROM_OOMMF_RECOMPUTED_DATA = figures/generated_from_recomputed_data/oommf/
 
-DIR_NMAG_GENERATED_DATA = micromagnetic_simulation_data/generated_data/nmag
+DIR_NMAG_GENERATED_DATA = micromagnetic_simulation_data/recomputed_data/nmag
 NMAG_OUTPUT_FILENAMES = dynamic_txyz.txt mxs.npy mys.npy mzs.npy
 
 #

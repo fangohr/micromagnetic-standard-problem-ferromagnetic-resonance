@@ -90,7 +90,7 @@ def reproduce_figures(data_dir, output_dir):
 
 
 if __name__ == '__main__':
-    default_data_dir = os.path.join(here, '../micromagnetic_simulation_data/generated_data/oommf/')
+    default_data_dir = os.path.join(here, '../micromagnetic_simulation_data/recomputed_data/oommf/')
     default_output_dir = os.path.join(here, '../figures/generated_from_reference_data/oommf/')
 
     parser = argparse.ArgumentParser(description='Reproduce figures 2-5 in the paper.')

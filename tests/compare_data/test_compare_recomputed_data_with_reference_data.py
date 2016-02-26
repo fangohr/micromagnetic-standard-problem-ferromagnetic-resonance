@@ -9,7 +9,7 @@ TOL = 0
 this_directory = os.path.abspath(os.path.dirname(__file__))
 
 REFERENCE_DATA_DIR_OOMMF = os.path.join(this_directory, '../../micromagnetic_simulation_data/reference_data/oommf/')
-GENERATED_DATA_DIR_OOMMF = os.path.join(this_directory, '../../micromagnetic_simulation_data/generated_data/oommf/')
+GENERATED_DATA_DIR_OOMMF = os.path.join(this_directory, '../../micromagnetic_simulation_data/recomputed_data/oommf/')
 
 ref_data_reader = DataReader(REFERENCE_DATA_DIR_OOMMF, data_format='OOMMF')
 gen_data_reader = DataReader(GENERATED_DATA_DIR_OOMMF, data_format='OOMMF')
@@ -18,11 +18,11 @@ gen_data_reader = DataReader(GENERATED_DATA_DIR_OOMMF, data_format='OOMMF')
 def test__compare_average_magnetisation():
     """
     Check that maximum difference in average magnetisation between
-    reference data and generated data is below threshold.
+    reference data and recomputed data is below threshold.
 
     """
 
-    print("\nComparing average magnetisation between reference data and generated data.")
+    print("\nComparing average magnetisation between reference data and recomputed data.")
 
     TOL = 1e-14
 
@@ -39,11 +39,11 @@ def test__compare_average_magnetisation():
 def test__compare_spatially_resolved_magnetisation():
     """
     Check that maximum difference in spatially resolved magnetisation
-    between reference data and generated data is below threshold.
+    between reference data and recomputed data is below threshold.
 
     """
 
-    print("\nComparing spatially resolved magnetisation between reference data and generated data.")
+    print("\nComparing spatially resolved magnetisation between reference data and recomputed data.")
 
     TOL = 1e-14
 

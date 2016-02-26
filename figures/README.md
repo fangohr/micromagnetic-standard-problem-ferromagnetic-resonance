@@ -17,7 +17,7 @@ Contents of this folder:
 - [generated_from_recomputed_data/](./generated_from_recomputed_data/)
 
   Initially empty. It is where the plots generated from recomputed data in
-  [micromagnetic_simulation_data/generated_data/](../micromagnetic_simulation_data/generated_data/)
+  [micromagnetic_simulation_data/recomputed_data/](../micromagnetic_simulation_data/recomputed_data/)
   will be placed when running the following command from the toplevel
   folder of this repository.
   ```

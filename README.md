@@ -157,6 +157,6 @@ rom your `~/.bashrc` file that was added in step 2 above.
   ````
 
   This will produce four data files (`dynamic_txyz.txt`, `mxs.npy`, `mys.npy`, `mzs.npy`)
-  in the directory `micromagnetic_simulation_data/generated_data/oommf/` in this repository.
+  in the directory `micromagnetic_simulation_data/recomputed_data/oommf/` in this repository.
   It obviously requires OOMMF to be installed. If you are using `conda` as specified in
   the installation instructions above then OOMMF will automatically be installed.

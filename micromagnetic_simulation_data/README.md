@@ -5,6 +5,6 @@ Contents of this folder:
   `generate_data.sh` in the folder [src/micromagnetic_simulation_scripts/](../src/micromagnetic_simulation_scripts/)
   of this repository.
 
-- [generated_data/](./generated_data/) is an empty folder. When running the simulation
+- [recomputed_data/](./recomputed_data/) is an empty folder. When running the simulation
   scripts in [src/micromagnetic_simulation_scripts/](../src/micromagnetic_simulation_scripts/)
   this is where the resulting output data will be placed.

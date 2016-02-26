@@ -6,7 +6,7 @@ machine:
 
 general:
   artifacts:
-    #- "micromagnetic_simulation_data/generated_data/oommf/"
+    #- "micromagnetic_simulation_data/recomputed_data/oommf/"
     - "figures/generated_from_reference_data/oommf/"
 
 dependencies:
