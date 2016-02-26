@@ -21,7 +21,7 @@ Contents of this folder:
   will be placed when running the following command from the toplevel
   folder of this repository.
   ```
-  make reproduce-figures-from-scratch-with-oommf
+  make reproduce-figures-from-oommf-recomputed-data
   ```
   Note that this command will first produce the recomputed data
   (by running `make generate-oommf-data`), so it may take a while
