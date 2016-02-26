@@ -4,14 +4,25 @@ Contents of this folder:
 
   The plots that were used for Figures 2-5 in the paper (in PNG and PDF format).
 
-- [generated_plots/](./generated_plots)
+- [generated_from_reference_data/](./generated_from_reference_data/)
 
-  This is initially an empty folder. This is where the generated plots
-  will be placed when running either of the following commands from the
-  toplevel folder of this repository.
-  ```
-  make reproduce-figures-from-scratch
-  ```
+  This is initially an empty folder. It is where the plots generated
+  from reference data in [micromagnetic_simulation_data/reference_data/](../micromagnetic_simulation_data/reference_data/)
+  will be placed when running the following command from the toplevel
+  folder of this repository.
   ```
   make reproduce-figures-from-reference-data
   ```
+
+- [generated_from_recomputed_data/](./generated_from_recomputed_data/)
+
+  This is initially an empty folder. It is where the plots generated
+  from recomputed data in [micromagnetic_simulation_data/generated_data/](../micromagnetic_simulation_data/generated_data/)
+  will be placed when running the following command from the toplevel
+  folder of this repository.
+  ```
+  make reproduce-figures-from-scratch
+  ```
+  Note that this command will first produce the recomputed data
+  (by running `make generate-oommf-data`), so it may take a while
+  to complete.
