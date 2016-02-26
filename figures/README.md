@@ -2,12 +2,12 @@ Contents of this folder:
 
 - [reference_plots_from_paper/](./reference_plots_from_paper/)
 
-  The plots that were used for Figures 2-5 in the paper (in PNG and PDF format).
+  The plots that were used for Figures 2-5 in the paper (in .png and .pdf format).
 
 - [generated_from_reference_data/](./generated_from_reference_data/)
 
-  This is initially an empty folder. It is where the plots generated
-  from reference data in [micromagnetic_simulation_data/reference_data/](../micromagnetic_simulation_data/reference_data/)
+  Initially empty. It is where the plots generated from reference data in
+  [micromagnetic_simulation_data/reference_data/](../micromagnetic_simulation_data/reference_data/)
   will be placed when running the following command from the toplevel
   folder of this repository.
   ```
@@ -16,8 +16,8 @@ Contents of this folder:
 
 - [generated_from_recomputed_data/](./generated_from_recomputed_data/)
 
-  This is initially an empty folder. It is where the plots generated
-  from recomputed data in [micromagnetic_simulation_data/generated_data/](../micromagnetic_simulation_data/generated_data/)
+  Initially empty. It is where the plots generated from recomputed data in
+  [micromagnetic_simulation_data/generated_data/](../micromagnetic_simulation_data/generated_data/)
   will be placed when running the following command from the toplevel
   folder of this repository.
   ```

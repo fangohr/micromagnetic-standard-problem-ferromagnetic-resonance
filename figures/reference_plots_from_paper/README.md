@@ -1,5 +1,5 @@
 This folder contains the exact plots that were used for Figures 2-5 in
-the paper (in both PNG and PDF format). They were generated using the
+the paper (in both .png and .pdf format). They were generated using the
 OOMMF data in [micromagnetic_simulation_data/reference_data/oommf/](../../micromagnetic_simulation_data/reference_data/oommf/).
 
 You can reproduce these plots by running the following command from
