@@ -34,7 +34,7 @@ Depending on your interest and expertise, you can use this repository in various
 These instructions assume that you are on some kind of Linux/Unix system.
 While the code should certainly work on Windows, we have not tested this
 nd some of the instructions below may need tweaking to make them work on
-Windows. If you are using Windows and find any missing steps then fell
+Windows. If you are using Windows and find any missing steps then feel
 free to contact us (or even better submit a Pull Request for this
 repository).
 
