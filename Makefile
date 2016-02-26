@@ -44,7 +44,7 @@ reproduce-figures-from-reference-data: generate-oommf-data
 
 reproduce-figures-from-scratch: generate-oommf-data
 	@python src/reproduce_figures.py \
-	    --data-dir=$(DIR_OOMMF_GENERATED_DATA)
+	    --data-dir=$(DIR_OOMMF_GENERATED_DATA) \
 	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_RECOMPUTED_DATA)
 
 generate-oommf-data: $(OOMMF_OUTPUT_FILES)
