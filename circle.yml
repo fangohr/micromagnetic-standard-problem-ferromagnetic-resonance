@@ -35,5 +35,6 @@ test:
     - make unit-tests
     - make reproduce-figures-from-oommf-reference-data
     - make generate-oommf-data
-    - make reproduce-figures-from-scratch-with-oommf
+    - make compare-data
+    - make reproduce-figures-from-oommf-recomputed-data
     # - make integration-tests
