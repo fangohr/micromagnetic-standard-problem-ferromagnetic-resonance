@@ -1,5 +1,7 @@
 import numpy as np
 import os
+import shutil
+import tempfile
 from nose.tools import assert_equals, assert_true, assert_raises
 
 from postprocessing import DataReader
@@ -16,7 +18,6 @@ class DataReaderTestBase(object):
     subclasses `TestDataReaderOOMMF`, `TestDataReaderNmag` below.
 
     """
-
     def test__get_timesteps_returns_expected_timesteps_from_reference_data(self):
         """
         DataReader.get_timesteps() returns expected timesteps from reference data.
@@ -74,6 +75,17 @@ class DataReaderTestBase(object):
         DataReader raises error during initialisation if data format is not supported.
         """
         assert_raises(ValueError, DataReader, os.path.join(REF_DATA_DIR, 'oommf/'), data_format='Foobar')
+
+    def test__data_reader_raises_error_if_expected_data_files_are_not_present(self):
+        """
+        DataReader raises error during initialisation if expected data files are not present.
+        """
+        tmpdir = tempfile.mkdtemp()  # create empty temporary directory
+
+        assert_raises(RuntimeError, DataReader, tmpdir, data_format='OOMMF')
+        assert_raises(RuntimeError, DataReader, tmpdir, data_format='Nmag')
+
+        shutil.rmtree(tmpdir)
 
 
 class TestDataReaderOOMMF(DataReaderTestBase):

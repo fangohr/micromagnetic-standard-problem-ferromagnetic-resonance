@@ -28,8 +28,23 @@ class BaseDataReader(object):
 
     """
 
+    EXPECTED_DATA_FILES = None  # needs to be overwritten by derived classes
+
     def __init__(self, data_dir):
         self.data_dir = data_dir
+        self._check_expected_data_files_exist()
+
+    def _check_expected_data_files_exist(self):
+        """
+        Check that all files in `self.EXPECTED_DATA_FILES` exist.
+        Raises RuntimeError if one of those files is not found.
+
+        """
+        expected_files = [os.path.join(self.data_dir, fname) for fname in self.EXPECTED_DATA_FILES]
+
+        for f in expected_files:
+            if not os.path.exists(f):
+                raise RuntimeError("Expected data file does not exist: '{}'".format(f))
 
     def get_timesteps(self, unit='s'):
         """
@@ -94,6 +109,8 @@ class BaseDataReader(object):
 
 
 class OOMMFDataReader(BaseDataReader):
+    EXPECTED_DATA_FILES = ['dynamic_txyz.txt', 'mxs.npy', 'mys.npy', 'mzs.npy']
+
     def __init__(self, data_dir):
         super(OOMMFDataReader, self).__init__(data_dir)
 
@@ -115,6 +132,8 @@ class OOMMFDataReader(BaseDataReader):
 
 
 class NmagDataReader(BaseDataReader):
+    EXPECTED_DATA_FILES = ['dynamic_txyz.txt', 'mxs.npy', 'mys.npy', 'mzs.npy']
+
     def __init__(self, data_dir):
         super(NmagDataReader, self).__init__(data_dir)
 
