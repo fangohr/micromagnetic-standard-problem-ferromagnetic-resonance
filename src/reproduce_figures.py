@@ -57,12 +57,12 @@ def reproduce_figures(data_dir, output_dir):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    print("Using the following data and output directories \n"
+    print("\nUsing the following data and output directories \n"
           "(run 'python reproduce_figures.py --help' to see \n"
           "how you can change these).\n")
 
     print("Input data directory:\n   {}\n".format(os.path.abspath(data_dir)))
-    print("Output directory:\n   {}\n".format(os.path.abspath(data_dir)))
+    print("Output directory:\n   {}\n".format(os.path.abspath(output_dir)))
 
     # Create DataReader which provides a convenient way of
     # reading raw simulation data and computing derived data.
