@@ -49,7 +49,7 @@ To run the code in this repository, the following software must be installed:
   * scipy
   * matplotlib
   * click
-* [git](https://git-scm.com/) (to clone the repository) 
+* [git](https://git-scm.com/) (optional, required to clone the repository. Download zip file as alternative.) 
 * [Nmag](http://nmag.soton.ac.uk/nmag/) (optional)
 
 _TODO: Mention the versions that are required (if any), or at least the ones we used for testing._
