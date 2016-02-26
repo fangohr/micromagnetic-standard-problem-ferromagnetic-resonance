@@ -34,7 +34,7 @@ Depending on your interest and expertise, you can use this repository in various
 These instructions assume that you are on some kind of Linux/Unix system.
 While the code should certainly work on Windows, we have not tested this
 nd some of the instructions below may need tweaking to make them work on
-Windows. If you are using Windows and find any missing steps then fell
+Windows. If you are using Windows and find any missing steps then feel
 free to contact us (or even better submit a Pull Request for this
 repository).
 
@@ -43,14 +43,14 @@ repository).
 To run the code in this repository, the following software must be installed:
 
 * [OOMMF](http://math.nist.gov/oommf/)
-* [Nmag](http://nmag.soton.ac.uk/nmag/) (optional)
 * [Python](https://www.python.org)
 * Python modules:
   * numpy
   * scipy
   * matplotlib
   * click
-* [git](https://git-scm.com/) (to clone the repository)
+* [git](https://git-scm.com/) (optional, required to clone the repository. Download zip file as alternative.) 
+* [Nmag](http://nmag.soton.ac.uk/nmag/) (optional)
 
 _TODO: Mention the versions that are required (if any), or at least the ones we used for testing._
 
@@ -84,22 +84,33 @@ via the package manager of your operating system.)
   simply delete this folder.
 
 2. Make sure that your `~/.bashrc` file contains a  line similar to the following. The conda installer will
-   typically offer to add this for you automatically.
+  typically offer to add this for you automatically.
 
-       export PATH=~/miniconda3/bin:$PATH
+  ````
+  export PATH=~/miniconda3/bin:$PATH
+  ````
 
-   Note that the exact path may depend on whether you installed Miniconda or the full Anaconda distribution,
-   so if you add this manually then make sure it points to the correct location of your installation.
+  Note that the exact path may depend on whether you installed Miniconda or the full Anaconda distribution,
+  so if you add this manually then make sure it points to the correct location of your installation.
 
-3. Run `source ~/.bashrc` to activate the conda installation. This makes the conda executable available in the terminal.
+3. To activate the conda installation, run
+   ````
+  source ~/.bashrc
+   ````
 
+  Alternatively, opening a new terminal window is likely to achieve the same. This step makes the conda executable available in the terminal.
+  
 4. Create a new conda environment called `fmr-stdproblem` which contains all necessary packages (these are specified in the file `conda_environment.yml`).
 
-       conda env create --name fmr-stdproblem -f conda_environment.yml
+  ````
+  conda env create --name fmr-stdproblem -f conda_environment.yml
+  ````
 
 5. Activate the newly created environment
 
-       source activate fmr-stdproblem
+  ````
+  source activate fmr-stdproblem 
+  ````
 
 This should provide all the necessary requirements. If you ever want to delete the conda installation,
 simply remove the folder where conda was installed (for example, `~/miniconda3`) and remove the line
@@ -110,20 +121,28 @@ rom your `~/.bashrc` file that was added in step 2 above.
 
 - If you are using conda (see instructions above), make sure that your conda environment for this repository is activated:
 
-      source activate fmr-stdproblem
+  ````
+  source activate fmr-stdproblem
+  ````
 
 - Clone this repository and change into the newly created directory.
 
-      git clone https://github.com/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.git
-      cd micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite
-
+  ````
+  git clone https://github.com/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.git
+  cd micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite
+  ````
+      
 - Run the unit tests to check that everything is installed correctly. (This step is optional but recommended.)
 
-      make unit-tests
+  ````
+  make unit-tests
+  ````
 
 - Reproduce the figures using our pre-computed reference data:
 
-      make reproduce-figures-from-reference-data
+  ````
+  make reproduce-figures-from-reference-data
+  ````
 
   If the unit tests passed then this step should also work because the
   only difference is that it uses 'real' data instead of mock data.
@@ -133,7 +152,9 @@ rom your `~/.bashrc` file that was added in step 2 above.
 
 - Re-generate the raw data by running the OOMMF simulation:
 
-      make generate-oommf-data
+  ````
+  make generate-oommf-data
+  ````
 
   This will produce four data files (`dynamic_txyz.txt`, `mxs.npy`, `mys.npy`, `mzs.npy`)
   in the directory `micromagnetic_simulation_data/generated_data/oommf/` in this repository.
