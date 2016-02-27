@@ -19,7 +19,7 @@ OOMMF_OUTPUT_FILES = $(foreach filename,$(OOMMF_OUTPUT_FILENAMES),$(DIR_OOMMF_RE
 NMAG_OUTPUT_FILES = $(foreach filename,$(NMAG_OUTPUT_FILENAMES),$(DIR_NMAG_RECOMPUTED_DATA)/$(filename) )
 
 #
-# Set environment variable needed for the target 'generate-oommf-data'.
+# Set environment variable needed for the target 'recompute-oommf-data'.
 # This makes a guess where 'oommf.tcl' is located, based on the assumption
 # that OOMMF was installed using conda. If this guess is wrong you need to
 # set this environment variable manually.
@@ -29,12 +29,14 @@ OOMMFTCL ?= $(shell echo $(shell dirname $(shell which oommf))/../opt/oommf.tcl)
 TEST_RUNNER ?= nosetests
 TEST_OPTIONS ?= --nocapture --verbose
 
-all: unit-tests reproduce-figures-from-oommf-reference-data generate-oommf-data reproduce-figures-from-oommf-recomputed-data
+all: test
+
+test: unit-tests reproduce-figures-from-oommf-reference-data recompute-oommf-data reproduce-figures-from-oommf-recomputed-data
 
 unit-tests:
 	$(TEST_RUNNER) $(TEST_OPTIONS) tests/unit_tests/
 
-compare-data: generate-oommf-data
+compare-data: recompute-oommf-data
 	$(TEST_RUNNER) $(TEST_OPTIONS) tests/compare_data/
 
 reproduce-figures-from-oommf-reference-data:
@@ -42,18 +44,18 @@ reproduce-figures-from-oommf-reference-data:
 	    --data-dir=$(DIR_OOMMF_REFERENCE_DATA) \
 	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_REFERENCE_DATA)
 
-reproduce-figures-from-oommf-recomputed-data: generate-oommf-data
+reproduce-figures-from-oommf-recomputed-data: recompute-oommf-data
 	@python src/reproduce_figures.py \
 	    --data-dir=$(DIR_OOMMF_RECOMPUTED_DATA) \
 	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_RECOMPUTED_DATA)
 
-generate-oommf-data: $(OOMMF_OUTPUT_FILES)
+recompute-oommf-data: $(OOMMF_OUTPUT_FILES)
 $(OOMMF_OUTPUT_FILES):
 	@cd src/micromagnetic_simulation_scripts/oommf/ && OOMMFTCL=$(OOMMFTCL) ./generate_data.sh
 
-generate-nmag-data: $(NMAG_OUTPUT_FILES)
+recompute-nmag-data: $(NMAG_OUTPUT_FILES)
 $(NMAG_OUTPUT_FILES):
 	@cd src/micromagnetic_simulation_scripts/nmag/ && ./generate_data.sh
 
-.PHONY: all unit-tests generate-oommf-data generate-nmag-data \
+.PHONY: all unit-tests recompute-oommf-data recompute-nmag-data \
 	reproduce-figures-from-oommf-reference-data reproduce-figures-from-oommf-recomputed-data
