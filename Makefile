@@ -31,7 +31,7 @@ TEST_OPTIONS ?= --nocapture --verbose
 
 all: test
 
-test: unit-tests reproduce-figures-from-oommf-reference-data recompute-oommf-data reproduce-figures-from-oommf-recomputed-data
+test: unit-tests reproduce-figures-from-oommf-reference-data recompute-oommf-data compare-data reproduce-figures-from-oommf-recomputed-data
 
 unit-tests:
 	$(TEST_RUNNER) $(TEST_OPTIONS) tests/unit_tests/
