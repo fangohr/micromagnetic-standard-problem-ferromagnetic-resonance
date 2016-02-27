@@ -1,14 +1,15 @@
 # Proposal of a micromagnetic standard problem for ferromagnetic resonance simulations
 
 This repository accompanies the paper _"Proposal of a standard problem for ferromagnetic resonance simulations"_ available at _[...]_.
-It provides data files and scripts which allow the reader to reproduce these results. Users can also use this code as a basis to apply
+It provides data files and scripts which allow the reader to reproduce these results. Alternatively, you can use this code as a basis to apply
 it to their own micromagnetic problems.
 
-Start by reading [Quick start](#quick-start) below. It provides an overview of the contents of this repository and the different ways
+Start by reading [Quick start](#quick-start) below to get an overview of the contents of this repository and the different ways
 in which you can use it.
 
+----------
 
-## Authors
+**Authors:**
 Alexander Baker, Marijan Beg, Gregory Ashton, Weiwei Wang,
 Maximilian Albert, Dmitri Chernyshenko, Shilei Zhang, Marc-Antonio Bisotti, Matteo Franchin,
 Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
@@ -21,38 +22,42 @@ Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
 - [Quick start](#quick-start)
 - [Prerequisites](#prerequisites)
 - [Repository structure](#repository-structure)
+- [Running the scripts and tests in this repository](#running-the-scripts-and-tests-in-this-repository)
 - [Detailed installation instructions for prerequisites](#detailed-installation-instructions-for-prerequisites)
 
 
 ## Quick start
 
-_Before you start check the [prerequisites](#prerequisites) to make sure you have the necessary software installed._
+_Before you start, check the [prerequisites](#prerequisites) to make sure you have the necessary software installed._
 
-Depending on your interest and expertise, you can use this repository in the following ways (in increasing order of difficulty).
-These are described in more detail below, but if you are impatient you can simply run the given `make` command for each step.
+Depending on your interest and expertise, you can use this repository in different ways:
 
-- Download or browse the [data files](./micromagnetic_simulation_data/reference_data/oommf/) underlying figures 2-5 in the paper.
+1. Download or browse the [data files](./micromagnetic_simulation_data/reference_data/oommf/) underlying the main figures 2-5 in the paper.
 
-- Re-produce the main figures 2-5 in the paper from our pre-computed reference data. (No micromagnetic software needed.)
+2. Re-produce figures 2-5 from our pre-computed reference data (no micromagnetic software needed):
 
-  `make reproduce-figures-from-oommf-reference-data`
+   `make reproduce-figures-from-oommf-reference-data`
 
-- Run our micromagnetic simulation scripts to re-generate the raw data files (OOMMF required).
+3. Run our micromagnetic simulation scripts to recompute the raw data files (OOMMF required):
 
-  `make recompute-oommf-data`
+   `make recompute-oommf-data`
 
-- Produce figures 2-5 "from scratch", based on freshly computed micromagnetic simulation data from the previous step.
-  This is useful to verify that you get the same results on your own computer.
+   Then compare the recomputed data with our reference data (to verify that you obtain the same results on your computer):
 
-  `make reproduce-figures-from-oommf-recomputed-data`
+   `make compare-data`
 
-- Run the standard problem with your own micromagnetic software, and use our code to plot and compare the results. (Advanced.)
+4. Produce figures 2-5 from the freshly computed micromagnetic simulation data from the previous step.
+   This is useful to verify that you get the same output plots on your machine.
+
+   `make reproduce-figures-from-oommf-recomputed-data`
+
+5. If you have run the standard problem proposed in the paper with your own micromagnetic software, you can use our plotting code to visualise and compare the results. (Advanced.)
 
 
-In the rest of this document we start by describing the structure of
-this repository and giving a brief overview of its contents. Then we
-explain in more details the different ways in which you may want to
-use it.
+The remainder of this document describes the structure of this
+repository and gives a brief overview of its contents. Then we
+explain in more details the different ways in which you may want
+to use it.
 
 
 ## Prerequisites
@@ -65,20 +70,21 @@ To run the code in this repository, the following software must be installed:
   * numpy
   * scipy
   * matplotlib
-* [git](https://git-scm.com/) (optional, required to clone the repository. Download zip file as alternative.) 
-* [Nmag](http://nmag.soton.ac.uk/nmag/) (optional)
+  * nose _(to run the automated tests)_
+* [git](https://git-scm.com/) _(optional, required to clone the repository. Download zip file as alternative.)_
+* [Nmag](http://nmag.soton.ac.uk/nmag/) _(optional)_
 
 _TODO: Mention the versions that are required (if any), or at least the ones we used for testing._
 
 The easiest and most convenient way of installing these prerequisites
-is by using `conda`. This is described in the [detailed installation
+is by using `conda` as described in the [detailed installation
 instructions](#detailed-installation-instructions-for-prerequisites)
 below.
 
 Using `conda` has multiple advantages: the installation works the same
 way for all operating systems, everything is installed locally in your
-home directory so that it does not interfere with your system and you
-can easily remove everything should you wish to do so.
+home directory so that it does not interfere with your system installation,
+and you can easily remove everything should you wish to do so.
 
 If you do not want to use `conda` then you can install the
 prerequisites manually, for example using `pip` (for Python modules)
@@ -94,8 +100,8 @@ some files and directories that are not relevant to the end user).
 .
 ├── micromagnetic_simulation_data/
 │   ├── reference_data/
-│   │   └── oommf/
-│   │   ├── nmag/
+│   │   ├── oommf/
+│   │   └── nmag/
 │   └── recomputed_data/
 │
 ├── figures/
@@ -105,8 +111,8 @@ some files and directories that are not relevant to the end user).
 │
 ├── src/
 │   ├── micromagnetic_simulation_scripts/
-│   │   └── oommf/
-│   │   ├── nmag/
+│   │   ├── oommf/
+│   │   └── nmag/
 │   ├── postprocessing/
 │   └── reproduce_figures.py
 │
@@ -119,7 +125,7 @@ some files and directories that are not relevant to the end user).
   - `reference_data/`
 
     The "raw" micromagnetic simulation data that we used to produce
-    Figures 2-5 in the paper (it was generated using the scripts in
+    figures 2-5 in the paper (it was generated using the scripts in
     the `src/` folder). We provide reference data produced with both
     OOMMF and Nmag.
 
@@ -135,7 +141,7 @@ some files and directories that are not relevant to the end user).
 
   - `reference_plots_from_paper/`
 
-    This folder contains the exact plots that were used for Figures
+    This folder contains the exact plots that were used for figures
     2-5 in the paper (in .png and .pdf format). They were generated
     using the scripts in `src/`, applied to the OOMMF reference data.
 
@@ -154,24 +160,22 @@ some files and directories that are not relevant to the end user).
 
   - `micromagnetic_simulation_scripts/`
 
-    - `oommf/`
-
-      `nmag/`
-
-      These folders contain scripts for both OOMMF and Nmag which
-      implement the simulation setup described in our paper. You can
-      run these to re-compute the "raw" data that serves as the basis
-      for our figures.
+    This folder contains scripts for both OOMMF and Nmag which
+    implement the simulation setup for the proposed standard
+    problem described in our paper. You can run these scripts
+    to re-compute the "raw" data that serves as the basis for
+    our figures.
 
   - `postprocessing/`
 
     This folder contains a small Python module to facilitate the
-    reading of raw simulation data and plotting of the figures.
+    reading of raw simulation data in various formats and
+    plotting of the figures.
 
   - `reproduce_figures.py`
 
     A Python script which allows you to conveniently produce the plots
-    for Figures 2-5 from micromagnetic simulation data (both from our
+    for figures 2-5 from micromagnetic simulation data (both from our
     reference data and from re-computed data).
 
 - `tests/`
@@ -196,7 +200,7 @@ some files and directories that are not relevant to the end user).
   2. `make reproduce-figures-from-oommf-reference-data`
 
      Runs the script `src/reproduce_figures.py` using our OOMMF
-     reference data as input. Produces the plots for Figures 2-5 and
+     reference data as input. Produces the plots for figures 2-5 and
      places them in the output directory `figures/generated_from_reference_data/oommf/`.
 
   3. `make recompute-oommf-data`
@@ -213,9 +217,81 @@ some files and directories that are not relevant to the end user).
   5. `make reproduce-figures-from-oommf-recomputed-data`
 
      Runs the script `src/reproduce_figures.py` using the data
-     computed in step (iii) as input. Produces the plots for Figures
+     computed in step (iii) as input. Produces the plots for figures
      2-5 and places them in the output directory
      `figures/generated_from_recomputed_data/oommf/`.
+
+
+
+
+### Running the scripts and tests in this repository
+
+_Before you start, check the [prerequisites](#prerequisites) to make sure you have the necessary software installed._
+
+If you are using conda (see [instructions below](#detailed-installation-instructions-for-prerequisites)),
+make sure that your conda environment for this repository is activated:
+
+  ````
+  source activate fmr-stdproblem
+  ````
+
+Clone this repository and change into the newly created directory.
+
+  ````
+  git clone https://github.com/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.git
+  cd micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite
+  ````
+
+If you want to run all the steps described below at once, simply run:
+```
+make all
+```
+This runs the following sub-steps, which you can also perform individually.
+
+- Run the unit tests to check that everything is installed correctly. (This step is optional but recommended.)
+
+  ````
+  make unit-tests
+  ````
+
+- Reproduce the plots for figures 2-5 using our pre-computed reference data:
+
+  ````
+  make reproduce-figures-from-oommf-reference-data
+  ````
+
+  If the unit tests passed then this step should also work.
+  Because this step uses pre-computed data it does not
+  require any micromagnetic software to be installed.
+  The resulting plots are placed in the directory
+  `figures/generated_from_reference_data/oommf/`.
+
+- Recompute the raw data by running the OOMMF simulation scripts:
+
+  ````
+  make recompute-oommf-data
+  ````
+
+  This will produce four "raw" data files (`dynamic_txyz.txt`, `mxs.npy`, `mys.npy`, `mzs.npy`)
+  in the directory `micromagnetic_simulation_data/recomputed_data/oommf/`.
+
+- Compare the freshly computed data from the previous step with our reference data to ensure that both coincide.
+
+  ```
+  make compare-data
+  ```
+
+  This reads the data files in the two directories `micromagnetic_simulation_data/reference_data/`
+  and `micromagnetic_simulation_data/recomputed_data/` and compares them numerically. If the difference
+  is above a small threshold (close to machine precision), the test fails.
+
+- Reproduce the plots for figures 2-5 using the freshly computed reference data.
+
+  ```
+  make reproduce-figures-from-oommf-recomputed-data
+  ```
+  The resulting plots are placed in the directory
+  `figures/generated_from_recomputed_data/oommf/`.
 
 
 ## Detailed installation instructions for prerequisites
@@ -224,9 +300,9 @@ These instructions assume that you are on some kind of Linux/Unix
 system. While the code should certainly work on Windows, we have not
 tested this and some of the instructions below may need tweaking. If
 you use Windows and find any missing steps then feel free to contact
-us (or even better submit a Pull Request for this repository).
+us, or even better submit a pull request (PR) for this repository.
 
-The easiest way of installing all the prerequisites is using [`conda`](http://conda.pydata.org/docs/).
+The easiest way of installing all the prerequisites is using the package manager [`conda`](http://conda.pydata.org/docs/).
 The `conda` installer allows you to create dedicated Python environments very easily
 (similar to Python's `virtualenv`, but in a much cleaner and more powerful way).
 It also allows to install non-Python packages and thus provides an easy way of making OOMMF available.
@@ -261,7 +337,8 @@ via the package manager of your operating system.)
   ````
 
   Note that the exact path may depend on whether you installed Miniconda or the full Anaconda distribution,
-  so if you add this manually then make sure it points to the correct location of your installation.
+  so if you add this manually then make sure it points to the correct location of your installation (`conda`
+  will print this information at the end of the installation procedure).
 
 3. To activate the conda installation, run
    ````
@@ -276,57 +353,12 @@ via the package manager of your operating system.)
   conda env create --name fmr-stdproblem -f conda_environment.yml
   ````
 
-5. Activate the newly created environment
+5. Activate the newly created environment.
 
   ````
   source activate fmr-stdproblem 
   ````
 
-This should provide all the necessary requirements. If you ever want to delete the conda installation,
+This should provide all the necessary prerequisites. If you ever want to delete the conda installation,
 simply remove the folder where conda was installed (for example, `~/miniconda3`) and remove the line
-rom your `~/.bashrc` file that was added in step 2 above.
-
-
-### Running scripts in this repository
-
-- If you are using conda (see instructions above), make sure that your conda environment for this repository is activated:
-
-  ````
-  source activate fmr-stdproblem
-  ````
-
-- Clone this repository and change into the newly created directory.
-
-  ````
-  git clone https://github.com/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.git
-  cd micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite
-  ````
-      
-- Run the unit tests to check that everything is installed correctly. (This step is optional but recommended.)
-
-  ````
-  make unit-tests
-  ````
-
-- Reproduce the figures using our pre-computed reference data:
-
-  ````
-  make reproduce-figures-from-oommf-reference-data
-  ````
-
-  If the unit tests passed then this step should also work because the
-  only difference is that it uses 'real' data instead of mock data.
-
-  Because this step uses pre-computed data it does not require any
-  micromagnetic software to be installed.
-
-- Re-generate the raw data by running the OOMMF simulation:
-
-  ````
-  make generate-oommf-data
-  ````
-
-  This will produce four data files (`dynamic_txyz.txt`, `mxs.npy`, `mys.npy`, `mzs.npy`)
-  in the directory `micromagnetic_simulation_data/recomputed_data/oommf/` in this repository.
-  It obviously requires OOMMF to be installed. If you are using `conda` as specified in
-  the installation instructions above then OOMMF will automatically be installed.
+from your `~/.bashrc` file that was added in step 2 above.
