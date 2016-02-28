@@ -6,7 +6,7 @@ dependencies:
   - functools32
   - matplotlib==1.5.1.post960+g628427a
   - git
-  - nose
   - numpy
   - oommf=12a5bis_20120928
+  - pytest
   - scipy

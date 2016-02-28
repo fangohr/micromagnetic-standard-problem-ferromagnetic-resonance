@@ -1,4 +1,4 @@
 all: test
 
 test:
-	PYTHONPATH=../../src:$$PYTHONPATH  nosetests -sv .
+	PYTHONPATH=../../src:$$PYTHONPATH py.test -sv .

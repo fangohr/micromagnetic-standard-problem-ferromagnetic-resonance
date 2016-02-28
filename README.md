@@ -72,7 +72,7 @@ To run the code in this repository, the following software must be installed:
   * numpy
   * scipy
   * matplotlib
-  * nose _(to run the automated tests)_
+  * py.test _(to run the automated tests)_
 * [git](https://git-scm.com/) _(optional, required to clone the repository. Download zip file as alternative.)_
 * [Nmag](http://nmag.soton.ac.uk/nmag/) _(optional)_
 

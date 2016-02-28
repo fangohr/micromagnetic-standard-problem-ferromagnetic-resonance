@@ -26,8 +26,8 @@ NMAG_OUTPUT_FILES = $(foreach filename,$(NMAG_OUTPUT_FILENAMES),$(DIR_NMAG_RECOM
 #
 OOMMFTCL ?= $(shell echo $(shell dirname $(shell which oommf))/../opt/oommf.tcl) \
 
-TEST_RUNNER ?= nosetests
-TEST_OPTIONS ?= --nocapture --verbose
+TEST_RUNNER ?= py.test
+TEST_OPTIONS ?= --capture=no --verbose
 
 all: test
 

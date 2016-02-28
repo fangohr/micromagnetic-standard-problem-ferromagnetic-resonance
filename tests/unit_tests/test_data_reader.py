@@ -1,8 +1,8 @@
 import numpy as np
 import os
+import pytest
 import shutil
 import tempfile
-from nose.tools import assert_equals, assert_true, assert_raises
 
 from postprocessing import DataReader
 from .mock_utils import FakeDataReader
@@ -33,8 +33,8 @@ class DataReaderTestBase(object):
         timesteps_expected = np.linspace(5e-12, 20e-9, 4000)
         timesteps_ns_expected = timesteps_expected * 1e9
 
-        assert_true(np.allclose(timesteps, timesteps_expected, atol=0, rtol=1e-13))
-        assert_true(np.allclose(timesteps_ns, timesteps_ns_expected, atol=0, rtol=1e-13))
+        assert np.allclose(timesteps, timesteps_expected, atol=0, rtol=1e-13)
+        assert np.allclose(timesteps_ns, timesteps_ns_expected, atol=0, rtol=1e-13)
 
     def test__get_num_timesteps_returns_number_of_timesteps_present_in_reference_data(self):
         """
@@ -42,7 +42,7 @@ class DataReaderTestBase(object):
         """
         num_timesteps = self.data_reader.get_num_timesteps()
 
-        assert_equals(num_timesteps, 4000)
+        assert num_timesteps == 4000
 
     def test__get_average_magnetisation_returns_array_of_expected_shape(self):
         """
@@ -51,7 +51,7 @@ class DataReaderTestBase(object):
         for component in ('x', 'y', 'z'):
             m_avg = self.data_reader.get_average_magnetisation(component)
 
-            assert_equals(m_avg.shape, (4000,))
+            assert m_avg.shape == (4000,)
 
     def test__get_spatially_resolved_magnetisation_returns_array_of_expected_shape(self):
         """
@@ -60,7 +60,7 @@ class DataReaderTestBase(object):
         for component in ('x', 'y', 'z'):
             m_full = self.data_reader.get_spatially_resolved_magnetisation(component)
 
-            assert_equals(m_full.shape, (4000, 24, 24))
+            assert m_full.shape == (4000, 24, 24)
 
     def test__get_dt_returns_expected_timestep_present_in_reference_data(self):
         """
@@ -68,29 +68,31 @@ class DataReaderTestBase(object):
         """
         dt = self.data_reader.get_dt()
 
-        assert_true(np.allclose(dt, 5e-12, atol=0, rtol=1e-14))
+        assert np.allclose(dt, 5e-12, atol=0, rtol=1e-14)
 
     def test__data_reader_raises_error_if_data_format_is_not_supported(self):
         """
         DataReader raises error during initialisation if data format is not supported.
         """
-        assert_raises(ValueError, DataReader, os.path.join(REF_DATA_DIR, 'oommf/'), data_format='Foobar')
+        with pytest.raises(ValueError):
+            DataReader(os.path.join(REF_DATA_DIR, 'oommf/'), data_format='Foobar')
 
-    def test__data_reader_raises_error_if_expected_data_files_are_not_present(self):
+    @pytest.mark.parametrize('data_format', ['OOMMF', 'Nmag'])
+    def test__data_reader_raises_error_if_expected_data_files_are_not_present(self, data_format):
         """
         DataReader raises error during initialisation if expected data files are not present.
         """
         tmpdir = tempfile.mkdtemp()  # create empty temporary directory
 
-        assert_raises(RuntimeError, DataReader, tmpdir, data_format='OOMMF')
-        assert_raises(RuntimeError, DataReader, tmpdir, data_format='Nmag')
+        with pytest.raises(RuntimeError):
+            DataReader(tmpdir, data_format=data_format)
 
         shutil.rmtree(tmpdir)
 
 
 class TestDataReaderOOMMF(DataReaderTestBase):
     @classmethod
-    def setUpClass(cls):
+    def setup_class(cls):
         """
         Create an instance of `OOMMFDataReader` which can be re-used for each individual test.
         """
@@ -99,7 +101,7 @@ class TestDataReaderOOMMF(DataReaderTestBase):
 
 class TestDataReaderNmag(DataReaderTestBase):
     @classmethod
-    def setUpClass(cls):
+    def setup_class(cls):
         """
         Create an instance of `NmagDataReader` which can be re-used for each individual test.
         """
@@ -108,7 +110,7 @@ class TestDataReaderNmag(DataReaderTestBase):
 
 class TestFakeDataReader(DataReaderTestBase):
     @classmethod
-    def setUpClass(cls):
+    def setup_class(cls):
         """
         Create an instance of `NmagDataReader` which can be re-used for each individual test.
         """
