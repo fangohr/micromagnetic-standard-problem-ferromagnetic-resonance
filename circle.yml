@@ -34,7 +34,7 @@ test:
     - oommf +version
     - make unit-tests
     - make reproduce-figures-from-oommf-reference-data
-    - make generate-oommf-data
+    - make recompute-oommf-data
     - make compare-data
     - make reproduce-figures-from-oommf-recomputed-data
     # - make integration-tests
