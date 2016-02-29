@@ -25,7 +25,7 @@ dependencies:
     - conda info -a
 
     # Install OOMMF and relevant Python packages into the conda root environment.
-    - conda env update --name root -f conda_environment.yml
+    - conda env update --name root -f environment.yml
 
 test:
   override:

@@ -349,10 +349,10 @@ via the package manager of your operating system.)
 
   Alternatively, opening a new terminal window is likely to achieve the same. This step makes the conda executable available in the terminal.
   
-4. Create a new conda environment called `fmr-stdproblem` which contains all necessary packages (these are specified in the file `conda_environment.yml`).
+4. Create a new conda environment called `fmr-stdproblem` which contains all necessary packages (these are specified in the file `environment.yml`).
 
   ````
-  conda env create --name fmr-stdproblem -f conda_environment.yml
+  conda env create --name fmr-stdproblem -f environment.yml
   ````
 
 5. Activate the newly created environment.
