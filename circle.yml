@@ -31,6 +31,7 @@ test:
   override:
     - cat $(which oommf)
     - echo $PATH
+    - python --version
     - tclsh ${OOMMFTCL} +version
     - oommf +version
     - make unit-tests
