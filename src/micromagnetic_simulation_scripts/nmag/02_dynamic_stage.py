@@ -1,3 +1,4 @@
+import numpy as np
 import nmag
 from nmag import SI, every, at
 
@@ -12,9 +13,8 @@ alpha = 0.008  # Gilbert damping
 
 # External magnetic field.
 H = 80e3  # A/m
-x_direction = 0.81923192051904048
-y_direction = 0.57346234436332832
-z_direction = 0
+H_direction = np.array([1.0, 0.715, 0.0])
+H_direction_normalized = H_direction / np.linalg.norm(H_direction)
 
 # Sampling parameters
 dt = 5e-12  # time step (s)
@@ -48,7 +48,7 @@ sim.load_mesh(mesh_name, [("Permalloy", Py)], unit_length=SI(1e-9, "m"))
 sim.load_m_from_h5file(relax_name + ".h5")
 
 # Set the applied magnetic field
-sim.set_H_ext([x_direction, y_direction, z_direction], SI(H, 'A/m'))
+sim.set_H_ext([H_direction_normalized], SI(H, 'A/m'))
 
 # Set convergence parameters
 sim.set_params(stopping_dm_dt=0.0, ts_abs_tol=1e-7, ts_rel_tol=1e-7)
