@@ -1,0 +1,39 @@
+machine:
+  environment:
+    MINICONDA_ROOT: $HOME/miniconda
+    OOMMFTCL: $MINICONDA_ROOT/opt/oommf.tcl
+    PATH: $MINICONDA_ROOT/bin:$PATH
+
+general:
+  artifacts:
+    #- "micromagnetic_simulation_data/generated_data/oommf/"
+    - "figures/generated_plots/"
+
+dependencies:
+  # Note, we used to use the naive caching of docker images, but found that
+  # it was quicker just to pull each time. #rollondockercaching
+  override:
+    # Install conda and add it to PATH
+    - wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
+    - bash miniconda.sh -b -p $MINICONDA_ROOT
+    - hash -r
+
+    # Apply some conda settings, update conda and print info about the installation (for debugging)
+    - conda config --set always_yes yes
+    - conda update -q conda
+    - conda info -a
+
+    # Install OOMMF and relevant Python packages
+    - conda install -c http://conda.anaconda.org/maxalbert numpy pip functools32 nose oommf=12a5bis_20120928 matplotlib==1.5.1.post960+g628427a cycler
+    - pip install pathlib
+
+test:
+  override:
+    - cat $(which oommf)
+    - echo $PATH
+    - tclsh ${OOMMFTCL} +version
+    - oommf +version
+    - make unit-tests
+    # - make integration-tests
+    # - make generate-oommf-data
+    # - make reproduce-figures-from-scratch
