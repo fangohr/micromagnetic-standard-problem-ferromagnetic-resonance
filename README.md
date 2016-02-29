@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite)
+[![Circle CI](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance)
 
 # Proposal of a micromagnetic standard problem for ferromagnetic resonance simulations
 
@@ -240,8 +240,8 @@ make sure that your conda environment for this repository is activated:
 Clone this repository and change into the newly created directory.
 
   ````
-  git clone https://github.com/maxalbert/micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite.git
-  cd micromagnetic-standard-problem-ferromagnetic-resonance_v3_rewrite
+  git clone https://github.com/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance.git
+  cd micromagnetic-standard-problem-ferromagnetic-resonance
   ````
 
 If you want to run all the steps described below at once, simply run:
