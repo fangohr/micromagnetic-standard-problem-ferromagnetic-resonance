@@ -12,8 +12,8 @@ alpha = 1  # Gilbert damping
 
 # External magnetic field.
 H = 80e3  # A/m
-x_direction = 0.813405448449
-y_direction = 0.581697151818
+x_direction = 0.81345856316858023
+y_direction = 0.58162287266553481
 z_direction = 0.0
 
 # Total simulation time

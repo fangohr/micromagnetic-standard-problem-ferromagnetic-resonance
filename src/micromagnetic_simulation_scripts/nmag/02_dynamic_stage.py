@@ -12,8 +12,8 @@ alpha = 0.008  # Gilbert damping
 
 # External magnetic field.
 H = 80e3  # A/m
-x_direction = 0.819152044289
-y_direction = 0.573576436351
+x_direction = 0.81923192051904048
+y_direction = 0.57346234436332832
 z_direction = 0
 
 # Sampling parameters

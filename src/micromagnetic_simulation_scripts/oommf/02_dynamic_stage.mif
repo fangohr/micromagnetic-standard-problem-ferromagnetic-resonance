@@ -25,7 +25,7 @@ Specify Oxs_Demag {}
 # External magnetic bias field
 Specify Oxs_FixedZeeman {
     field { Oxs_UniformVectorField {
-	vector { 0.819152044289 0.573576436351 0.0 }
+	vector { 0.81923192051904048 0.57346234436332832 0.0 }
     } }
     multiplier 8e4
 }
