@@ -1,6 +1,6 @@
 import pytest
 
-from matplotlib.testing.decorators import image_comparison
+#from matplotlib.testing.decorators import image_comparison
 
 from mock_utils import FakeDataReader
 from postprocessing import make_figure_2, make_figure_3, make_figure_4, make_figure_5
