@@ -78,8 +78,6 @@ testing, but the code should work with most other versions as well.
 * [git](https://git-scm.com/) (2.6.4) _(optional, required to clone the repository. Download zip file as alternative.)_
 * [Nmag](http://nmag.soton.ac.uk/nmag/) (0.2.1) _(optional)_
 
-_TODO: Mention the versions that are required (if any), or at least the ones we used for testing._
-
 The easiest and most convenient way of installing these prerequisites
 is by using `conda` as described in the [detailed installation
 instructions](#detailed-installation-instructions-for-prerequisites)
