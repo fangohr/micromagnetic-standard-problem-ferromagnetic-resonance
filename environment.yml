@@ -3,8 +3,7 @@ channels:
   - http://conda.anaconda.org/maxalbert
 dependencies:
   - python=2.7
-  - functools32
-  - matplotlib==1.5.1.post960+g628427a
+  - matplotlib
   - git
   - numpy
   - oommf=12a5bis_20120928
