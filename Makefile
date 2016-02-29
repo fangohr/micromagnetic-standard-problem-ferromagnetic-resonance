@@ -34,10 +34,10 @@ all: test
 test: unit-tests reproduce-figures-from-oommf-reference-data recompute-oommf-data compare-data reproduce-figures-from-oommf-recomputed-data
 
 unit-tests:
-	$(TEST_RUNNER) $(TEST_OPTIONS) tests/unit_tests/
+	make -C tests unit-tests
 
 compare-data: recompute-oommf-data
-	$(TEST_RUNNER) $(TEST_OPTIONS) tests/compare_data/
+	make -C tests compar-data
 
 reproduce-figures-from-oommf-reference-data:
 	@python src/reproduce_figures.py \

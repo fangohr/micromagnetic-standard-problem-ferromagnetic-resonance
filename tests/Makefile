@@ -1,12 +1,12 @@
+TEST_RUNNER ?= py.test
+TEST_OPTIONS ?= --capture=no --verbose
+
 all: unit-tests
 
 unit-tests:
-	make -C unit_tests/
+	$(TEST_RUNNER) $(TEST_OPTIONS) unit_tests/
 
 compare-data:
-	make -C compare-data/
+	$(TEST_RUNNER) $(TEST_OPTIONS) compare-data/
 
-reproduce-figures:
-	make -C reproduce_figures/
-
-.PHONY: all unit-tests reproduce-figures
+.PHONY: all unit-tests
