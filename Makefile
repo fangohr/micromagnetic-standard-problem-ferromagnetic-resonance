@@ -39,12 +39,14 @@ compare-data: recompute-oommf-data
 reproduce-figures-from-oommf-reference-data:
 	@python src/reproduce_figures.py \
 	    --data-dir=$(DIR_OOMMF_REFERENCE_DATA) \
-	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_REFERENCE_DATA)
+	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_REFERENCE_DATA) \
+	    --output-format=png,pdf
 
 reproduce-figures-from-oommf-recomputed-data: recompute-oommf-data
 	@python src/reproduce_figures.py \
 	    --data-dir=$(DIR_OOMMF_RECOMPUTED_DATA) \
-	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_RECOMPUTED_DATA)
+	    --output-dir=$(DIR_PLOTS_FROM_OOMMF_RECOMPUTED_DATA) \
+	    --output-format=png,pdf
 
 recompute-oommf-data: $(OOMMF_OUTPUT_FILES)
 $(OOMMF_OUTPUT_FILES):

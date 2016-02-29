@@ -48,12 +48,13 @@ def check_input_data_exists(data_dir):
         sys.exit()
 
 
-def reproduce_figures(data_dir, output_dir):
+def reproduce_figures(data_dir, output_dir, output_format):
     """
     This function reproduces Figures 2-5. It reads the raw simulation
     data from `data_dir` and stores the resulting plots in `output_dir`.
 
     """
+    output_format = output_format.split(',')
     check_input_data_exists(data_dir)
 
     # Create output directory if it does not exists
@@ -80,10 +81,11 @@ def reproduce_figures(data_dir, output_dir):
     fig5 = make_figure_5(data_reader)
 
     # Save plots to output directory
-    fig2.savefig(os.path.join(output_dir, 'figure_2.png'))
-    fig3.savefig(os.path.join(output_dir, 'figure_3.png'))
-    fig4.savefig(os.path.join(output_dir, 'figure_4.png'))
-    fig5.savefig(os.path.join(output_dir, 'figure_5.png'))
+    for fmt in output_format:
+        fig2.savefig(os.path.join(output_dir, 'figure_2.' + fmt))
+        fig3.savefig(os.path.join(output_dir, 'figure_3.' + fmt))
+        fig4.savefig(os.path.join(output_dir, 'figure_4.' + fmt))
+        fig5.savefig(os.path.join(output_dir, 'figure_5.' + fmt))
 
     print("Done.")
     print("Plots have been successfully generated in output directory.")
@@ -98,6 +100,9 @@ if __name__ == '__main__':
                         help='Directory containing the raw simulation data')
     parser.add_argument('--output-dir', dest='output_dir', type=str, default=default_output_dir,
                         help='Directory where the output plot will be saved')
+    parser.add_argument('--output-format', dest='output_format', type=str, default=['png,pdf'],
+                        help=('Format in which output images are generated; multiple formats'
+                              'can be supplied as a comma-separated list. (Default: png,pdf)'))
     args = parser.parse_args()
 
-    reproduce_figures(args.data_dir, args.output_dir)
+    reproduce_figures(args.data_dir, args.output_dir, args.output_format)
