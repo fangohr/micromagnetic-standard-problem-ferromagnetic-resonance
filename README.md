@@ -64,17 +64,19 @@ to use it.
 
 ## Prerequisites
 
-To run the code in this repository, the following software must be installed:
+To run the code in this repository, the following software must be
+installed. For reference, we list the version numbers which we use for
+testing, but the code should work with most other versions as well.
 
-* [OOMMF](http://math.nist.gov/oommf/)
-* [Python](https://www.python.org)
+* [OOMMF](http://math.nist.gov/oommf/) (1.2.0.4, built from [this tarball](http://math.nist.gov/oommf/dist/oommf12a6_20150930.tar.gz))
+* [Python](https://www.python.org) (3.5.1)
 * Python modules:
-  * numpy
-  * scipy
-  * matplotlib
-  * py.test _(to run the automated tests)_
-* [git](https://git-scm.com/) _(optional, required to clone the repository. Download zip file as alternative.)_
-* [Nmag](http://nmag.soton.ac.uk/nmag/) _(optional)_
+  * numpy (1.10.4)
+  * scipy (0.17.0)
+  * matplotlib (1.5.1)
+  * py.test (2.8.5) _(to run the automated tests)_
+* [git](https://git-scm.com/) (2.6.4) _(optional, required to clone the repository. Download zip file as alternative.)_
+* [Nmag](http://nmag.soton.ac.uk/nmag/) (0.2.1) _(optional)_
 
 _TODO: Mention the versions that are required (if any), or at least the ones we used for testing._
 
@@ -300,9 +302,13 @@ This runs the following sub-steps, which you can also perform individually.
 
 These instructions assume that you are on some kind of Linux/Unix
 system. While the code should certainly work on Windows, we have not
-tested this and some of the instructions below may need tweaking. If
-you use Windows and find any missing steps then feel free to contact
-us, or even better submit a pull request (PR) for this repository.
+tested this and some of the instructions below may need tweaking.
+Also, unfortunately we do not currently provide a conda package for
+OOMMF so that you need to install OOMMF yourself (see
+[instructions](http://math.nist.gov/oommf/software-12.html) on the
+OOMMF homepage). If you use Windows and find any missing steps then
+feel free to contact us, or even better submit a pull request (PR) for
+this repository.
 
 The easiest way of installing all the prerequisites is using the package manager [`conda`](http://conda.pydata.org/docs/).
 The `conda` installer allows you to create dedicated Python environments very easily
