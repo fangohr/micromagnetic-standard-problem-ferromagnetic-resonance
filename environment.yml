@@ -2,7 +2,7 @@ name: fmr-stdproblem
 channels:
   - http://conda.anaconda.org/maxalbert
 dependencies:
-  - python=2.7
+  - python
   - matplotlib
   - git
   - numpy
