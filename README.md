@@ -71,10 +71,10 @@ testing, but the code should work with most other versions as well.
 * [OOMMF](http://math.nist.gov/oommf/) (1.2.0.4, built from [this tarball](http://math.nist.gov/oommf/dist/oommf12a6_20150930.tar.gz))
 * [Python](https://www.python.org) (3.5.1)
 * Python modules:
-  * numpy (1.10.4)
-  * scipy (0.17.0)
-  * matplotlib (1.5.1)
-  * py.test (2.8.5) _(to run the automated tests)_
+  * [numpy](http://www.numpy.org/) (1.10.4)
+  * [scipy](http://www.scipy.org/) (0.17.0)
+  * [matplotlib](http://matplotlib.org/) (1.5.1)
+  * [py.test](http://pytest.org/latest/) (2.8.5) _(to run the automated tests)_
 * [git](https://git-scm.com/) (2.6.4) _(optional, required to clone the repository. Download zip file as alternative.)_
 * [Nmag](http://nmag.soton.ac.uk/nmag/) (0.2.1) _(optional)_
 
