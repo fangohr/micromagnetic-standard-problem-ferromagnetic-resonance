@@ -26,18 +26,15 @@ NMAG_OUTPUT_FILES = $(foreach filename,$(NMAG_OUTPUT_FILENAMES),$(DIR_NMAG_RECOM
 #
 OOMMFTCL ?= $(shell echo $(shell dirname $(shell which oommf))/../opt/oommf.tcl) \
 
-TEST_RUNNER ?= py.test
-TEST_OPTIONS ?= --capture=no --verbose
-
 all: test
 
 test: unit-tests reproduce-figures-from-oommf-reference-data recompute-oommf-data compare-data reproduce-figures-from-oommf-recomputed-data
 
 unit-tests:
-	make -C tests unit-tests
+	make -C tests/unit_tests/
 
 compare-data: recompute-oommf-data
-	make -C tests compar-data
+	make -C tests/compare_data/
 
 reproduce-figures-from-oommf-reference-data:
 	@python src/reproduce_figures.py \
