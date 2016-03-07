@@ -48,7 +48,7 @@ def check_input_data_exists(data_dir):
         sys.exit()
 
 
-def reproduce_figures(data_dir, output_dir, output_format):
+def reproduce_figures(data_dir, output_dir, output_format, component='y'):
     """
     This function reproduces Figures 2-5. It reads the raw simulation
     data from `data_dir` and stores the resulting plots in `output_dir`.
@@ -75,8 +75,8 @@ def reproduce_figures(data_dir, output_dir, output_format):
     print("Generating plots..."),; sys.stdout.flush()
 
     # Generate plots
-    fig2 = make_figure_2(data_reader)
-    fig3 = make_figure_3(data_reader)
+    fig2 = make_figure_2(data_reader, component=component)
+    fig3 = make_figure_3(data_reader, component=component)
     fig4 = make_figure_4(data_reader)
     fig5 = make_figure_5(data_reader)
 
@@ -100,9 +100,11 @@ if __name__ == '__main__':
                         help='Directory containing the raw simulation data')
     parser.add_argument('--output-dir', dest='output_dir', type=str, default=default_output_dir,
                         help='Directory where the output plot will be saved')
-    parser.add_argument('--output-format', dest='output_format', type=str, default=['png,pdf'],
+    parser.add_argument('--output-format', dest='output_format', type=str, default='png,pdf',
                         help=('Format in which output images are generated; multiple formats'
                               'can be supplied as a comma-separated list. (Default: png,pdf)'))
+    parser.add_argument('--component', dest='component', type=str, default='y',
+                        help='Magnetization component to use for the plots in Figures 2, 3')
     args = parser.parse_args()
 
-    reproduce_figures(args.data_dir, args.output_dir, args.output_format)
+    reproduce_figures(args.data_dir, args.output_dir, args.output_format, args.component)
