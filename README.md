@@ -68,7 +68,7 @@ To run the code in this repository, the following software must be
 installed. For reference, we list the version numbers which we use for
 testing, but the code should work with most other versions as well.
 
-* [OOMMF](http://math.nist.gov/oommf/) (1.2.0.4, built from [this tarball](http://math.nist.gov/oommf/dist/oommf12a6_20150930.tar.gz))
+* [OOMMF](http://math.nist.gov/oommf/) (1.2 alpha 6 (30-Sep-2015), built from [this tarball](http://math.nist.gov/oommf/dist/oommf12a6_20150930.tar.gz))
 * [Python](https://www.python.org) (3.5.1)
 * Python modules:
   * [numpy](http://www.numpy.org/) (1.10.4)
