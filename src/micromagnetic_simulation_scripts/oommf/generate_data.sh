@@ -17,7 +17,6 @@
 # Raise error when a variable is not set, and exit as soon as any
 # error occurs in the script.
 #
-set -o nounset
 set -o errexit
 
 OOMMF_SCRIPTS="01_relaxation_stage.mif 02_dynamic_stage.mif oommf_postprocessing.py"
