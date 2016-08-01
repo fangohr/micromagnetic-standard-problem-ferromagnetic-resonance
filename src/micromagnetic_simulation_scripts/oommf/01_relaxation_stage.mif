@@ -1,5 +1,6 @@
 # MIF 2.1
-# Energy minimisation of initial state for 120 nm x 120 nm x 10 nm film.
+# Energy minimisation of initial state for 120 nm x 120 nm x 10 nm film,
+# discretising space into cubes with 5nm edge length.
 
 # Sample geometry
 Specify Oxs_BoxAtlas:atlas {
