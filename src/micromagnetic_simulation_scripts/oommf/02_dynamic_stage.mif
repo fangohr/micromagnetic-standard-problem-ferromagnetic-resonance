@@ -1,5 +1,5 @@
 # MIF 2.1
-# Dynamic stage for 120x120x5 nm film resonance test.
+# Dynamic stage for 120x120x10 nm film resonance test.
 
 # Sample geometry
 Specify Oxs_BoxAtlas:atlas {
