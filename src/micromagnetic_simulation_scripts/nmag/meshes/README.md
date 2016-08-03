@@ -1,5 +1,6 @@
 The mesh files here were created from the ``examesh`` mesh creation
-utility that comes with Nmag.
+utility that comes with Nmag (available at
+https://bitbucket.org/fangohr/nmag-src/src/tip/utils/cubicmesh/examesh.c)
 
 The commands to create the mesh files were:
 ```
