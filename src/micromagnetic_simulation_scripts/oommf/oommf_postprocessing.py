@@ -42,6 +42,10 @@ mxsBottom = mxs[:, numMagsPerLayer:]
 mysBottom = mys[:, numMagsPerLayer:]
 mzsBottom = mzs[:, numMagsPerLayer:]
 
+# The next three lines average the magnetisation in the top and bottom
+# layer of the discretisation mesh, to represent the magnetisation
+# at a height of z=5nm. 
+
 mxs_sampled = 0.5 * (mxsTop + mxsBottom).reshape((-1, nx, ny))
 mys_sampled = 0.5 * (mysTop + mysBottom).reshape((-1, nx, ny))
 mzs_sampled = 0.5 * (mzsTop + mzsBottom).reshape((-1, nx, ny))

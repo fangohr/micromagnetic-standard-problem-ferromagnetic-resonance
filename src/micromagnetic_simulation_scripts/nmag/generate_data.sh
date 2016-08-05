@@ -94,10 +94,20 @@ mv temp.txt dynamic_txyz.txt
 
 #
 # Extract the spatial magnetisation data (sampled on a 24 x 24 grid)
-# and store it in three numpy arrays 'mxs.npy', 'mys.npy' and 'mzs.npy'
 #
 nmagprobe 02_dynamic_stage_dat.h5 --field=m_Py    --time=0,20e-9,4000\
         --space=0,120,24/0,120,24/5     --out=dynamic_spatYMag.nmagProbe
+# The switch "--space=0,120,24/0,120,24/5" samples the magnetisation on
+# a 2d grid of positions with x-axis coordinates from 0 to 120 at 24 points,
+# doing the same for the y-axis coordinates. In the z direction, the magnetisation
+# is sampled at 5nm.
+#
+# The syntax for nmagprobe is explained at
+# https://bitbucket.org/fangohr/nmag-src/src/95e3a9c65c79ae10ca25bd834c952f803077002f/interface/nmag/h5probe.py?#h5probe.py-871
+
+
+# And store the spatial magnetisation data in three numpy arrays 'mxs.npy',
+# 'mys.npy' and 'mzs.npy'
 python nmag_postprocessing.py dynamic_spatYMag.nmagProbe
 
 #
