@@ -100,7 +100,7 @@ nmagprobe 02_dynamic_stage_dat.h5 --field=m_Py    --time=0,20e-9,4000\
 # The switch "--space=0,120,24/0,120,24/5" samples the magnetisation on
 # a 2d grid of positions with x-axis coordinates from 0 to 120 at 24 points,
 # doing the same for the y-axis coordinates. In the z direction, the magnetisation
-# is sampled at 5nm.
+# is sampled at 5nm. [1]
 #
 # The syntax for nmagprobe is explained at
 # https://bitbucket.org/fangohr/nmag-src/src/95e3a9c65c79ae10ca25bd834c952f803077002f/interface/nmag/h5probe.py?#h5probe.py-871
@@ -125,3 +125,16 @@ rm -rf $TMPDIR
 echo
 echo "Successfully generated Nmag data in directory: '$OUTPUT_DIR'"
 echo
+
+
+
+# [1] Post acceptance comment:
+#
+# Instead of "--space=0,120,24/0,120,24/5", we should have used
+# "--space=2.5,117.5,24/2.5,117.5,24/5" to sample the magnetisation
+# at positions equivalent to the centre of the cubes used in OOMMF's
+# finite difference magnetisation.
+#
+# This very minor change will only affect results computing with Nmag
+# using Method 2.
+
