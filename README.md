@@ -1,6 +1,5 @@
-[![Circle CI](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance)
-
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.59714.svg)](http://dx.doi.org/10.5281/zenodo.59714)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.59714.svg)](http://dx.doi.org/10.5281/zenodo.59714) 
+<a href="http://arxiv.org/abs/1603.05419"><img src="https://img.shields.io/badge/preprint-arxiv:1603.05419-lightgrey.svg" alt="arxiv"></a> [![Circle CI](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance) 
 
 # Proposal of a micromagnetic standard problem for ferromagnetic resonance simulations
 
