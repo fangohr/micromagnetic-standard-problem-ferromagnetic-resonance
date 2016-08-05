@@ -2,19 +2,26 @@
 
 # Proposal of a micromagnetic standard problem for ferromagnetic resonance simulations
 
-This repository accompanies the paper _"Proposal of a standard problem for ferromagnetic resonance simulations"_ available at _[...]_.
-It provides data files and scripts which allow the reader to reproduce these results. Alternatively, you can use this code as a basis to apply
-it to their own micromagnetic problems.
+[This repository](https://github.com/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance)
+accompanies the paper
+_"Proposal of a standard problem for ferromagnetic resonance simulations"_
+available at http://arxiv.org/abs/1603.05419 .
 
-Start by reading [Quick start](#quick-start) below to get an overview of the contents of this repository and the different ways
-in which you can use it.
+The repository provides data files and scripts which allow the reader
+to reproduce these results. Alternatively, you can use this code as a
+basis to apply it to their own micromagnetic problems.
+
+Start by reading [Quick start](#quick-start) below to get an overview
+of the contents of this repository and the different ways in which you
+can use it.
 
 ----------
 
 **Authors:**
-Alexander Baker, Marijan Beg, Gregory Ashton, Weiwei Wang,
-Maximilian Albert, Dmitri Chernyshenko, Shilei Zhang, Marc-Antonio Bisotti, Matteo Franchin,
-Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
+
+Alexander Baker, Marijan Beg, Gregory Ashton, 
+Maximilian Albert, Dmitri Chernyshenko, Weiwei Wang, Shilei Zhang, Marc-Antonio Bisotti,
+Matteo Franchin, Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
 
 *fangohr@soton.ac.uk
 
