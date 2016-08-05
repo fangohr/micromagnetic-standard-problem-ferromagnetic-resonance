@@ -1,13 +1,22 @@
 [![Circle CI](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance)
 
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.59714.svg)](http://dx.doi.org/10.5281/zenodo.59714)
+
 # Proposal of a micromagnetic standard problem for ferromagnetic resonance simulations
 
 [This repository](https://github.com/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance)
 accompanies the paper
 _"Proposal of a standard problem for ferromagnetic resonance simulations"_
-available at http://arxiv.org/abs/1603.05419 .
+available at http://arxiv.org/abs/1603.05419 by
 
-The repository provides data files and scripts which allow the reader
+Alexander Baker, Marijan Beg, Gregory Ashton, 
+Maximilian Albert, Dmitri Chernyshenko, Weiwei Wang, Shilei Zhang, Marc-Antonio Bisotti,
+Matteo Franchin, Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
+
+*fangohr@soton.ac.uk
+
+
+This repository provides data files and scripts which allow the reader
 to reproduce these results. Alternatively, you can use this code as a
 basis to apply it to their own micromagnetic problems.
 
@@ -16,15 +25,6 @@ of the contents of this repository and the different ways in which you
 can use it.
 
 ----------
-
-**Authors:**
-
-Alexander Baker, Marijan Beg, Gregory Ashton, 
-Maximilian Albert, Dmitri Chernyshenko, Weiwei Wang, Shilei Zhang, Marc-Antonio Bisotti,
-Matteo Franchin, Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
-
-*fangohr@soton.ac.uk
-
 
 ## Table of contents
 
