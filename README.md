@@ -375,3 +375,9 @@ via the package manager of your operating system.)
 This should provide all the necessary prerequisites. If you ever want to delete the conda installation,
 simply remove the folder where conda was installed (for example, `~/miniconda3`) and remove the line
 from your `~/.bashrc` file that was added in step 2 above.
+
+----------
+
+Acknowledgements: This work has been supported by the EPSRC through a
+Doctoral Training Grant, and the Centres for Doctoral Training
+EP/G03690X/1 and EP/L015382/1 .
