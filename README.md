@@ -5,12 +5,16 @@
 
 [This repository](https://github.com/fangohr/micromagnetic-standard-problem-ferromagnetic-resonance)
 accompanies the paper
-_"Proposal of a standard problem for ferromagnetic resonance simulations"_
-available at http://arxiv.org/abs/1603.05419 by
+
+_"Proposal of a standard problem for ferromagnetic resonance simulations"_ by
 
 Alexander Baker, Marijan Beg, Gregory Ashton, 
 Maximilian Albert, Dmitri Chernyshenko, Weiwei Wang, Shilei Zhang, Marc-Antonio Bisotti,
 Matteo Franchin, Chun Lian Hu, Robert Stamps, Thorsten Hesjedal, and Hans Fangohr*
+
+Journal of Magnetism and Magnetic Materials 421, 428-439 (2017), http://dx.doi.org/10.1016/j.jmmm.2016.08.009
+
+Preprint available at http://arxiv.org/abs/1603.05419
 
 *fangohr@soton.ac.uk
 
