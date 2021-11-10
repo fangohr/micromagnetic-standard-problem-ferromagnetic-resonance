@@ -13,7 +13,7 @@ alpha = 0.008  # Gilbert damping
 
 # External magnetic field.
 H = 80e3  # A/m
-H_direction = np.array([1.0, 0.715, 0.0])
+H_direction = np.array([1.0, 0.7, 0.0])
 H_direction_normalized = list(H_direction / np.linalg.norm(H_direction))
 
 # Sampling parameters
